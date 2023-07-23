@@ -2,7 +2,7 @@
 
 ## Integrantes do grupo
 * Rodrigo Albuquerque da Costa - roro.costa2018@gmail.com
-*
+* Alan da Costa Pessoa - alanpessoa1387@gmail.com
 *
 *
 *
