@@ -8,8 +8,9 @@
 *
 
 ## Descrição geral do projeto
-    ...
- 1. Quem vai usar o programa?
+O projeto trata-se da implementação de um sistema para gerenciar uma farmácia 
+
+ 1. Funcionários e possíveis clientes da farmácia que utilize o nosso sistema;
  2. Que serviços são “necessários” (leia-se: importantes para os clientes e usuários)?
  3. Quais serviços cada usuário pode executar?
 
