@@ -1,4 +1,4 @@
-# Sytem?
+# Farmacia da Rural
 
 ## Integrantes do grupo
 * Rodrigo Albuquerque da Costa - roro.costa2018@gmail.com
