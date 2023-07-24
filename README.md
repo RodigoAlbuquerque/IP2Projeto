@@ -4,7 +4,7 @@
 * Rodrigo Albuquerque da Costa - roro.costa2018@gmail.com
 * Alan da Costa Pessoa - alanpessoa1387@gmail.com
 * Rafael Rodrigues Martins da Silva - rafamartins.4d@gmail.com
-*
+* Pedro Henrique Rodrigues da Silva - pedrohrsilva280@gmail.com
 *
 
 ## Descrição geral do projeto
