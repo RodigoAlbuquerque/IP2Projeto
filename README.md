@@ -16,9 +16,9 @@ O projeto trata-se da implementação de um sistema para gerenciar uma farmácia
 
 ## Requisitos do projeto
 
-* ** REQ1 ** - 
-* ** REQ2 ** - 
-* ** REQ3 ** -
-* ** REQ4 ** -
+* ** REQ1 ** - Devera haver uma classe abstrata chamada Pessoa e duas classes filha da classe Pessoa são elas: Funcionario e Cliente
+* ** REQ2 ** - Devera haver uma classe abstrata chamada Produto e duas classes filha da classe Produto são elas: Comum e TarjaPreta
+* ** REQ3 ** - Devera haver um unico repositorio para armazenar os funcionarios e clientes da farmacia 
+* ** REQ4 ** - Devera haver um unico repositorio para armazenar os produtos de ambos os tipos da farmacia
 * ** REQ5 ** -
 * ** REQ6 ** -
