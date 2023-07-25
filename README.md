@@ -10,7 +10,7 @@
 ## Descrição geral do projeto
 O projeto trata-se da implementação de um sistema para gerenciar uma farmácia 
 
- 1. Funcionários e possíveis clientes da farmácia que utilize o nosso sistema;
+ 1. Quem ira utilizar a nossa aplicação? Funcionários e possíveis clientes da farmácia que utilize o nosso sistema;
  2. Que serviços são “necessários” (leia-se: importantes para os clientes e usuários)?
  3. Quais serviços cada usuário pode executar?
 
@@ -20,5 +20,9 @@ O projeto trata-se da implementação de um sistema para gerenciar uma farmácia
 * ** REQ2 ** - Devera haver uma classe abstrata chamada Produto e duas classes filha da classe Produto são elas: Comum e TarjaPreta
 * ** REQ3 ** - Devera haver um unico repositorio para armazenar os funcionarios e clientes da farmacia 
 * ** REQ4 ** - Devera haver um unico repositorio para armazenar os produtos de ambos os tipos da farmacia
-* ** REQ5 ** -
-* ** REQ6 ** -
+* ** REQ5 ** - A classe funcionario devera ser capaz de cadastrar novos produtos e abastecer o repositorio de produtos, além de serem capazes de vender produtos da farmacia
+* ** REQ6 ** - A classe cliente devera ser capaz de comprar produtos da farmacia
+* ** REQ7 ** -
+* ** REQ8 ** -
+* ** REQ9 ** -
+* ** REQ10 ** -
