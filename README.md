@@ -5,7 +5,7 @@
 * Alan da Costa Pessoa - alanpessoa1387@gmail.com
 * Rafael Rodrigues Martins da Silva - rafamartins.4d@gmail.com
 * Pedro Henrique Rodrigues da Silva - pedrohrsilva280@gmail.com
-*
+* José Fernando Carvalho de Oliveira - josefernando354@gmail.com
 
 ## Descrição geral do projeto
 O projeto trata-se da implementação de um sistema para gerenciar uma farmácia 
