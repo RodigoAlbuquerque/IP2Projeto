@@ -34,6 +34,6 @@ O projeto trata-se da implementação de um sistema para gerenciar uma farmácia
 * ** REQ11 ** - Garantir que o acesso a certas funcionalidades seja restrito a funcionários;
 * ** REQ12 ** - Garantir que o estoque de produtos nunca fique negativo, verificando a disponibilidade de produtos antes de realizar uma venda;
 * ** REQ13 ** - O sistema deve calcular o valor total da compra do cliente e gerar um comprovante de compra;
-* ** REQ14 ** -
-* ** REQ15 ** -
-*
+* ** REQ14 ** - Deverá haver um controlador (ou gerenciador) responsável por intermediar as interações entre a interface gráfica, os repositórios de funcionários, clientes e produtos, e as classes de negócio (Funcionário, Cliente, Produto). O controlador será responsável por processar as solicitações do usuário, atualizar os repositórios conforme necessário e fornecer informações para a interface gráfica exibir ao usuário.
+* ** REQ15 ** - A interface gráfica deve ser implementada utilizando uma biblioteca gráfica apropriada em Java, como Swing ou JavaFX. Ela deverá fornecer uma experiência intuitiva para os usuários interagirem com o sistema de gerenciamento de farmácia. A interface gráfica deve permitir a navegação entre as diferentes funcionalidades do sistema, como cadastro de funcionários, cadastro de clientes, cadastro de produtos, venda de produtos, relatórios, etc.
+* ** REQ16 ** - A interface gráfica deve fornecer mensagens claras e informativas para orientar os usuários em caso de erros ou ações bem-sucedidas. Por exemplo, em casos de tentativa de venda de um produto indisponível no estoque ou sucesso no cadastro de um novo funcionário.
