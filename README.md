@@ -8,16 +8,16 @@
 * José Fernando Carvalho de Oliveira - josefernando354@gmail.com
 
 ## Descrição geral do projeto
-O projeto trata-se da implementação de um sistema para gerenciar uma farmácia 
+    O projeto trata-se da implementação de um sistema para gerenciar uma farmácia 
 
  1. Quem ira utilizar a nossa aplicação?
-    Funcionários e possíveis clientes da farmácia que utilize o nosso sistema;
+   * Funcionários da farmácia que utilize o nosso sistema;
     
  2. Que serviços são “necessários” (leia-se: importantes para os clientes e usuários)?
-    A farmácia deve ser capaz de exibir uma lista com seus produtos e a quantidade disponível para cada produto junto com seu preço, além de ser capaz de abastecer seu estoque e listar clientes e funcionários de acordo com parâmetros pré-definidos.
+   * A farmácia deve ser capaz de exibir uma lista com seus produtos e a quantidade disponível para cada produto junto com seu preço, além de ser capaz de abastecer seu estoque e listar clientes e funcionários de acordo com parâmetros pré-definidos.
     
  3. Quais serviços cada usuário pode executar?
-    Usuários do tipo Funcionario devem ser capaz de abastecer o estoque da farmácia e vender produtos da mesma, enquanto, usuários do tipo Cliente devem ser capaz apenas de comprar produtos da farmácia.
+   * Usuários do tipo Funcionario devem ser capaz de abastecer o estoque da farmácia e vender produtos da mesma, enquanto, usuários do tipo Cliente devem ser capaz apenas de comprar produtos da farmácia.
 
 ## Requisitos do projeto
 
