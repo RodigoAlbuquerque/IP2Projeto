@@ -38,7 +38,7 @@
 
 ## Cronograma de MVPs com seleção de requisitos
 
-* **MVP1 - cadastros* - [REQ5, REQ9]: cadastro básico das entidades do sistema;
-* **MVP2 - remoções* - [REQ5, REQ9]: descadastrar entidades do sistema;
-* **MVP3 - vendas* - [REQ4]: Implementação de regras para realização de vendas de produtos controlados(com tarja) e comuns; 
-* **MPV4 - estoque* - [REQ10]: Implementação de regras para a atualização do estoque e impedir que ele fique negativo;
+* *MVP1 - cadastros* - [REQ5, REQ9]: cadastro básico das entidades do sistema. Essa funcionalidade se faz necessária, pois e preciso saber o funcionário que vendeu e a quem ele vendeu. Portanto deve-se cadastrar funcionários e clientes;
+* *MVP2 - remoções* - [REQ5, REQ9]: descadastrar entidades do sistema. Essa funcionalidade se faz necessária, pois caso algum funcionário seja despedido ou cliente fique por muito tempo obsoleto a remoção do funcionário e do cliente pode diminuir o uso de memória do sistema;
+* *MVP3 - vendas* - [REQ4]: Implementação de regras para realização de vendas de produtos controlados(com tarja) e comuns; 
+* *MPV4 - estoque* - [REQ10]: Implementação de regras para a atualização do estoque e impedir que ele fique negativo;
