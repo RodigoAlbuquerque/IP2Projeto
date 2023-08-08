@@ -1,7 +1,8 @@
+package codigoFarmacia.dados;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Pessoa;
+import codigoFarmacia.models.Pessoa;
 
 public class RepositorioPessoas {
     private List<Pessoa> pessoas;
@@ -59,6 +60,16 @@ public class RepositorioPessoas {
         for (Pessoa pessoa : pessoas){
             System.out.println(pessoa.getNome());
         }
+    }
+    
+    public List<Pessoa> listarPessoasPorTipo(Class<?> tipo){
+        List<Pessoa> pessoasDesejadas = new ArrayList<>();
+        for (Pessoa pe : pessoas) {
+            if( tipo.isInstance(pe) ){
+                pessoasDesejadas.add(pe);
+            }
+        }
+        return pessoasDesejadas;
     }
 
 }

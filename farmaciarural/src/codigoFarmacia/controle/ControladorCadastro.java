@@ -1,4 +1,8 @@
-package controle;
+package codigoFarmacia.controle;
+import codigoFarmacia.models.Pessoa;
+import codigoFarmacia.models.Produto;
+import codigoFarmacia.dados.RepositorioPessoas;
+import codigoFarmacia.dados.RepositorioProdutos;
 
 public class ControladorCadastro {
     private RepositorioPessoas repositorioPessoas;
@@ -6,13 +10,13 @@ public class ControladorCadastro {
     private static ControladorCadastro instance;
 
     private ControladorCadastro(){
-        repositorioPessoas = RepositorioPessoas getInstanceRepositorioPessoas();
-        repositorioProdutos = RepositorioProdutos getInstanceRepositorioProdutos();
+        repositorioPessoas = RepositorioPessoas.getInstanceRepositorioPessoas();
+        repositorioProdutos = RepositorioProdutos.getInstanceRepositorioProdutos();
     }
 
     public static ControladorCadastro getInstanceControladorCadastro(){
         if(instance == null){
-            instance = ControladorCadastro();
+            instance = new ControladorCadastro();
         }
         return instance;
     }
@@ -29,33 +33,25 @@ public class ControladorCadastro {
 
     public void removerPessoa(String cpf){
         if(cpf != null){
-            repositorioPessoas.removerPessoa();
+            repositorioPessoas.removerPessoa(cpf);
         }
     }
 
     public void cadastrarProduto(Produto produto){
         if( produto.getNome()!=null
             && produto.getPreco()!=null
-            && produto.getTarja()!=null
+            && produto.isTarja()
         ){
-            repositorioProdutos.cadastrarProduto();
+            repositorioProdutos.cadastrarProduto(produto);
         }
     }
     public void descadastrarProduto(String nome){
         if(nome !=null){
-            if(buscarProduto(nome)){
-                repositorioProdutos.descadastrarProduto(buscarProduto(nome));
+            if(repositorioProdutos.buscarProduto(nome)!=null){
+                repositorioProdutos.descadastrarProduto(repositorioProdutos.buscarProduto(nome));
             }
+        }
+    }
 
-        }
-    }
-    private Produto buscarProduto(String nome){
-        Produto prod = null;
-        for(Produto po: repositorioProdutos){
-            if(po.getNome() == nome){
-               prod = po;
-            }
-        }
-        return prod;
-    }
+
 }

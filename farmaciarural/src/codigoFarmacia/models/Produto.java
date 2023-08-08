@@ -1,4 +1,4 @@
-package models;
+package codigoFarmacia.models;
 
 public class Produto {
     private String nome;

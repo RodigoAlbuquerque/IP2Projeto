@@ -1,7 +1,8 @@
+package codigoFarmacia.dados;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Produto;
+import codigoFarmacia.models.Produto;
 
 public class RepositorioProdutos {
     private List<Produto> produtos;

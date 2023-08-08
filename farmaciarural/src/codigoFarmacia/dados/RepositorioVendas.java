@@ -1,8 +1,8 @@
-import java.time.LocalDateTime;
+package codigoFarmacia.dados;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Venda;
+import codigoFarmacia.models.Venda;
 
 public class RepositorioVendas {
     private List<Venda> vendas;

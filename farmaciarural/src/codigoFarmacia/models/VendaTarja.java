@@ -1,4 +1,4 @@
-package models;
+package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
