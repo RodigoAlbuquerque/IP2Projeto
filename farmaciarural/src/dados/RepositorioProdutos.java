@@ -20,7 +20,7 @@ public class RepositorioProdutos {
         produtos.add(produto);
     }
 
-    public void removerProduto(Produto produto) {
+    public void descadastrarProduto(Produto produto) {
         produtos.remove(produto);
     }
 
