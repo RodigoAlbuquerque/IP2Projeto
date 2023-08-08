@@ -3,9 +3,17 @@ import java.util.List;
 
 public class RepositorioProdutos {
     private List<Produto> produtos;
+    private static RepositorioProdutos uniqueInstance = null;
 
-    public RepositorioProdutos(){
+    private RepositorioProdutos(){
         produtos = new ArrayList<>();
+    }
+
+    public static RepositorioProdutos getInstanceRepositorioProdutos(){
+        if(uniqueInstance == null){
+            uniqueInstance = new RepositorioProdutos();
+        }
+        return uniqueInstance;
     }
 
     public void cadastrarProduto(Produto produto){

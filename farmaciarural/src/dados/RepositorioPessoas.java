@@ -2,9 +2,17 @@ import java.util.ArrayList;
 
 public class RepositorioPessoas {
     private List<Pessoa> pessoas;
+    private static RepositorioPessoas uniqueInstance = null;
 
-    public RepositorioPessoas(){
+    private RepositorioPessoas(){
         pessoas = new ArrayList<>();
+    }
+
+    public static RepositorioPessoas getInstanceRepositorioPessoas(){
+        if(uniqueInstance == null){
+            uniqueInstance = new RepositorioPessoas();
+        }
+        return uniqueInstance;
     }
 
     public void cadastrarPessoa(Pessoa pessoa){
@@ -17,7 +25,7 @@ public class RepositorioPessoas {
 
     private boolean existePessoaComCpf(String cpf){
         for (Pessoa pessoa : pessoas){
-            if (pessoa.getCpf().equals(Cpf)){
+            if (pessoa.getCpf().equals(cpf)){
                 return true;
             }
         }

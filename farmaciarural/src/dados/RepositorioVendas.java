@@ -1,14 +1,23 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioVendas {
     private List<Venda> vendas;
+    private static RepositorioVendas uniqueInstance = null;
 
-    public RepositorioVendas() {
+    private RepositorioVendas() {
         vendas = new ArrayList<>();
     }
 
-    public void cadastrarVenda(Venda venda) {
+    public static RepositorioVendas getInstanceRepositorioVendas(){
+        if(uniqueInstance == null){
+            uniqueInstance = new RepositorioVendas();
+        }
+        return uniqueInstance;
+    }
+
+    public void adicionarVenda(Venda venda) {
         vendas.add(venda);
     }
 
@@ -18,5 +27,8 @@ public class RepositorioVendas {
 
     public List<Venda> listarVendas() {
         return vendas;
+    }
+    public List<Venda> listarVendasEmPeriodo(LocalDateTime inic, LocalDateTime fim){
+
     }
 }
