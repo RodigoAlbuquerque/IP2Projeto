@@ -1,18 +1,20 @@
 package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Venda {
     private Funcionario funcionario;
     private Cliente cliente;
-    private Produto produto;
+    private List<Produto> produtos;
+
     private LocalDateTime data;
 
-    public Venda(Funcionario funcionario, Cliente cliente, Produto produto, LocalDateTime data) {
+    public Venda(Funcionario funcionario, Cliente cliente,List<Produto> produtos, LocalDateTime data) {
         this.funcionario = funcionario;
         this.cliente = cliente;
-        this.produto = produto;
         this.data = data;
+        this.produtos = produtos;
     }
 
     public Funcionario getFuncionario() {
@@ -31,14 +33,16 @@ public class Venda {
         this.cliente = cliente;
     }
    
-    public Produto getProduto() {
-        return produto;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
-   
+
+
+
     public LocalDateTime getData() {
         return data;
     }

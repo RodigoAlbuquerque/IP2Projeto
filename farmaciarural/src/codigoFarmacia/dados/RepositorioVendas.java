@@ -1,7 +1,7 @@
 package codigoFarmacia.dados;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import codigoFarmacia.models.Venda;
 
 public class RepositorioVendas {
@@ -31,12 +31,12 @@ public class RepositorioVendas {
         return vendas;
     }
     
-    public List<Venda> listarVendasPorPeriodo(Date dataInicial, Date dataFinal) {
+    public List<Venda> listarVendasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
         List<Venda> vendasNoPeriodo = new ArrayList<>();
 
         for (Venda venda : vendas) {
-            Date dataVenda = venda.getData();
-            if (dataVenda.after(dataInicial) && dataVenda.before(dataFinal)) {
+            LocalDateTime dataVenda = venda.getData();
+            if (dataVenda.isAfter(dataInicial) && dataVenda.isBefore(dataFinal)) {
                 vendasNoPeriodo.add(venda);
             }
         }
