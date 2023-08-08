@@ -30,7 +30,16 @@ public class RepositorioVendas {
     public List<Venda> listarVendas() {
         return vendas;
     }
-   // public List<Venda> listarVendasEmPeriodo(LocalDateTime inic, LocalDateTime fim){
-//
-    //}
+    
+    public List<Venda> listarVendasPorPeriodo(Date dataInicial, Date dataFinal) {
+        List<Venda> vendasNoPeriodo = new ArrayList<>();
+
+        for (Venda venda : vendas) {
+            Date dataVenda = venda.getData();
+            if (dataVenda.after(dataInicial) && dataVenda.before(dataFinal)) {
+                vendasNoPeriodo.add(venda);
+            }
+        }
+        return vendasNoPeriodo;
+    }
 }
