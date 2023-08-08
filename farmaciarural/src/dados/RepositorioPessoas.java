@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
+
+import models.Pessoa;
 
 public class RepositorioPessoas {
     private List<Pessoa> pessoas;
@@ -23,7 +26,7 @@ public class RepositorioPessoas {
         }
     }
 
-    private boolean existePessoaComCpf(String cpf){
+    private boolean existePessoa(String cpf){
         for (Pessoa pessoa : pessoas){
             if (pessoa.getCpf().equals(cpf)){
                 return true;

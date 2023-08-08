@@ -2,6 +2,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Venda;
+
 public class RepositorioVendas {
     private List<Venda> vendas;
     private static RepositorioVendas uniqueInstance = null;
@@ -28,7 +30,7 @@ public class RepositorioVendas {
     public List<Venda> listarVendas() {
         return vendas;
     }
-    public List<Venda> listarVendasEmPeriodo(LocalDateTime inic, LocalDateTime fim){
-
-    }
+   // public List<Venda> listarVendasEmPeriodo(LocalDateTime inic, LocalDateTime fim){
+//
+    //}
 }

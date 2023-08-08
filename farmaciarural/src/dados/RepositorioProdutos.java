@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Produto;
+
 public class RepositorioProdutos {
     private List<Produto> produtos;
     private static RepositorioProdutos uniqueInstance = null;

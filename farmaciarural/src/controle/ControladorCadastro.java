@@ -1,5 +1,4 @@
 package controle;
-import farmaciarural.dados.repositorioPessoas;
 
 public class ControladorCadastro {
     private RepositorioPessoas repositorioPessoas;
