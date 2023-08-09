@@ -1,6 +1,11 @@
 package codigoFarmacia.controle;
+import codigoFarmacia.models.Cliente;
+import codigoFarmacia.models.Funcionario;
 import codigoFarmacia.models.Pessoa;
 import codigoFarmacia.models.Produto;
+
+import java.util.List;
+
 import codigoFarmacia.dados.RepositorioPessoas;
 import codigoFarmacia.dados.RepositorioProdutos;
 
@@ -52,6 +57,23 @@ public class ControladorCadastro {
             }
         }
     }
+    public List<Produto> listarProdutos(){
+        return repositorioProdutos.listarProdutos();
+    }
 
-    
+    public List<Cliente> listarClientesQueMaisCompram(){
+        return repositorioPessoas.listarClientesQueMaisCompram();
+    }
+
+    public List<Funcionario> listarFuncionariosQueMaisVendem(){
+        return repositorioPessoas.listarFuncionariosQueMaisVendem();
+    }
+
+    public List<Pessoa> listarPessoasPorTipo(Class<?> tipo){
+        return repositorioPessoas.listarPessoasPorTipo(tipo);
+    }
+
+    public List<Pessoa> listarPessoas(){
+        return repositorioPessoas.listarPessoas();
+    }
 }

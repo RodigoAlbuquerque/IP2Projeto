@@ -59,10 +59,8 @@ public class RepositorioPessoas {
         return null;
     }
 
-    public void listarPessoas(){
-        for (Pessoa pessoa : pessoas){
-            System.out.println(pessoa.getNome());
-        }
+    public List<Pessoa> listarPessoas(){
+        return pessoas;
     }
     
     public List<Pessoa> listarPessoasPorTipo(Class<?> tipo){

@@ -2,6 +2,7 @@ package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
 
+
 public abstract class Pessoa {
     private String email;
     private String nome;
@@ -14,6 +15,7 @@ public abstract class Pessoa {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
+        calcularIdade(dataNascimento);
     }
 
     public String getEmail() {
@@ -54,5 +56,11 @@ public abstract class Pessoa {
     
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+    private void calcularIdade(LocalDateTime dataNascimento){
+        LocalDateTime hoje = LocalDateTime.now();
+        int anoAtual = hoje.getYear();
+        int idadeAtual = anoAtual - dataNascimento.getYear();
+        setIdade(idadeAtual);
     }
 }
