@@ -7,14 +7,23 @@ public class Venda {
     private Funcionario funcionario;
     private Cliente cliente;
     private List<Produto> produtos;
-
+    private Comprovante comprovante;
     private LocalDateTime data;
 
-    public Venda(Funcionario funcionario, Cliente cliente,List<Produto> produtos, LocalDateTime data) {
+    public Venda(Funcionario funcionario, Cliente cliente,List<Produto> produtos,Comprovante comp, LocalDateTime data) {
         this.funcionario = funcionario;
         this.cliente = cliente;
         this.data = data;
+        this.comprovante = comp;
         this.produtos = produtos;
+    }
+
+    public Comprovante getComprovante() {
+        return comprovante;
+    }
+
+    public void setComprovante(Comprovante comprovante) {
+        this.comprovante = comprovante;
     }
 
     public Funcionario getFuncionario() {

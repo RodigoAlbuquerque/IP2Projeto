@@ -5,12 +5,12 @@ import java.util.List;
 
 public class VendaTarja extends Venda {
 
-    public VendaTarja(Funcionario funcionario, Cliente cliente, Produto produto, LocalDateTime data) {
-        super(funcionario, cliente, produto, data);
-        
-    }
-
     private List<byte[]> receita;
+
+    public VendaTarja(Funcionario funcionario, Cliente cliente, List<Produto> produtos,Comprovante comp, LocalDateTime data,List<byte[]>receita) {
+        super(funcionario, cliente, produtos, comp, data);
+        this.receita = receita;
+    }
 
     public List<byte[]> getReceita() {
         return receita;

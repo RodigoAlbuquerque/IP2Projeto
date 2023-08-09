@@ -35,6 +35,14 @@ public class RepositorioProdutos {
         }
         return null;
     }
+    public void atualizarProduto(Produto produto) {
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getNome().equalsIgnoreCase(produto.getNome())) {
+                produtos.set(i, produto);
+                break;
+            }
+        }
+    }
 
     public List<Produto> listarProdutos() {
         return produtos;
