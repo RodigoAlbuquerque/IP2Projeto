@@ -35,6 +35,20 @@ public class RepositorioProdutos {
         }
         return null;
     }
+
+    public int buscarProduto(Produto pr){
+        int posicao = 0;
+         if(pr == produtos.get(0)){
+            return posicao;
+         }
+        for (Produto produto : produtos) {
+            if(pr != produto){
+                posicao ++;
+            }
+        }
+        return posicao;
+    }
+    
     public void atualizarProduto(Produto produto) {
         for (int i = 0; i < produtos.size(); i++) {
             if (produtos.get(i).getNome().equalsIgnoreCase(produto.getNome())) {
