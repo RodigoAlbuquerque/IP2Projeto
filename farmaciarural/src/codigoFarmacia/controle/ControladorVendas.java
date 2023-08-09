@@ -3,11 +3,15 @@ package codigoFarmacia.controle;
 import codigoFarmacia.models.Produto;
 import codigoFarmacia.models.Venda;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import codigoFarmacia.dados.RepositorioProdutos;
 import codigoFarmacia.dados.RepositorioVendas;
+import codigoFarmacia.models.Cliente;
 import codigoFarmacia.models.Comprovante;
+import codigoFarmacia.models.Funcionario;
 
 public class ControladorVendas {
     private RepositorioProdutos repositorioProdutos;
@@ -26,7 +30,32 @@ public class ControladorVendas {
         return instance;
     }
 
-    public void realizarVenda(Venda venda) {
+    public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente){
+        if(compra != null){
+            //Criando comprovante da compra 
+            Comprovante comprovante = new Comprovante(compra, 0.00, cliente.getCpf(), vendedor.getIdAcessoSistema());
+            if(verificarCompraControlada(compra)){
+
+            }else{
+                
+
+                Venda venda = new Venda(vendedor, cliente, compra, comprovante,LocalDateTime.now());
+                repositorioVendas.adicionarVenda(venda);
+            }
+        }
+    }
+    private boolean verificarCompraControlada(List<Produto> compra){
+        boolean controlado = false;
+        for(Produto pr: compra){
+            if(pr.isTarja()){
+                controlado = true;
+                break;
+            }
+        }
+        return controlado;
+    }
+
+    /*public void realizarVenda(Venda venda) {
         List<Produto> produtosVendidos = venda.getProdutos();
         if (produtosVendidos != null && repositorioProdutos.buscarProduto(produtosVendidos.getNome()) != null) {
             if (produtosVendidos.getQuantidade() > 0) {
@@ -42,6 +71,8 @@ public class ControladorVendas {
             System.out.println("Produto n�o encontrado.");
         }
     }
+    */
+
     public void adicionarProdutoAoEstoque(Produto produto, int quantidade) {
         if (produto != null && quantidade > 0) {
             Produto produtoExistente = repositorioProdutos.buscarProduto(produto.getNome());
