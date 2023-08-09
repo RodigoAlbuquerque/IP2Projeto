@@ -2,7 +2,7 @@ package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
 
-public class Funcionario extends Pessoa {
+public class Funcionario extends Pessoa implements Comparable<Funcionario>{
 
     private double idAcessoSistema;
    
@@ -30,5 +30,10 @@ public class Funcionario extends Pessoa {
 
     public void setNumerodeVendas(int numerodeVendas) {
         this.numeroDeVendas = numerodeVendas;
+    }
+
+    @Override
+    public int compareTo(Funcionario tFuncionario){
+        return (getNumerodeVendas() - tFuncionario.getNumerodeVendas());
     }
 }

@@ -2,7 +2,7 @@ package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
 
-public class Cliente extends Pessoa {
+public class Cliente extends Pessoa implements Comparable<Cliente> {
    
     private int numeroDeCompras;
 
@@ -17,5 +17,9 @@ public class Cliente extends Pessoa {
 
     public void setNumeroDeCompras(int numeroDeCompras) {
         this.numeroDeCompras = numeroDeCompras;
+    }
+    @Override
+    public int compareTo(Cliente tCliente){
+        return (getNumeroDeCompras() - tCliente.getNumeroDeCompras());
     }
 }

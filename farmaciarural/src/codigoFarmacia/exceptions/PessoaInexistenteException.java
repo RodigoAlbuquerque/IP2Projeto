@@ -1,4 +1,7 @@
 package codigoFarmacia.exceptions;
+
+import codigoFarmacia.models.Pessoa;
+
 public class PessoaInexistenteException extends Exception{
     private Pessoa pessoa;
 
