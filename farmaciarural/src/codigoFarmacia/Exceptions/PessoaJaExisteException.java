@@ -1,3 +1,4 @@
+package codigoFarmacia.exceptions;
 public class PessoaJaExisteException extends Exception{
     private Pessoa pessoa;
 

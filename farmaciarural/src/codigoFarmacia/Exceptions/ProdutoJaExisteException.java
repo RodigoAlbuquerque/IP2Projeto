@@ -1,3 +1,4 @@
+package codigoFarmacia.exceptions;
 public class ProdutoJaExisteException extends Exception{
     private Produto produto;
 
