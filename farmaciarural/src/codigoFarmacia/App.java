@@ -28,5 +28,19 @@ public class App {
         controladorCadastro.descadastrarProduto("Fluviral");
         controladorCadastro.removerPessoa("546497253");
 
+        System.out.println("\n--------------------------------------------------------------");
+        controladorCadastro.listarClientesQueMaisCompram();
+        System.out.println("*------------------------------------------------------------*\n");
+        controladorCadastro.listarFuncionariosQueMaisVendem();
+        System.out.println("\n--------------------------------------------------------------");
+        controladorCadastro.listarPessoas();
+        System.out.println("*------------------------------------------------------------*\n");
+        controladorCadastro.listarProdutos();
+        System.out.println("\n--------------------------------------------------------------");
+        controladorCadastro.listarPessoasPorTipo(Cliente.class);
+        System.out.println("*------------------------------------------------------------*\n");
+        controladorCadastro.listarPessoasPorTipo(Funcionario.class);
+        System.out.println("\n--------------------------------------------------------------");
+
     }
 }
