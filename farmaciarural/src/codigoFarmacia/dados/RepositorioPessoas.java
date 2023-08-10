@@ -7,21 +7,22 @@ import codigoFarmacia.models.Cliente;
 import codigoFarmacia.models.Funcionario;
 import codigoFarmacia.models.Pessoa;
 
-public class RepositorioPessoas {
+public class RepositorioPessoas implements IRepositorioPessoas {
     private List<Pessoa> pessoas;
-    private static RepositorioPessoas uniqueInstance = null;
+    private static IRepositorioPessoas uniqueInstance = null;
 
     private RepositorioPessoas(){
         pessoas = new ArrayList<>();
     }
 
-    public static RepositorioPessoas getInstanceRepositorioPessoas(){
+    public static IRepositorioPessoas getInstanceRepositorioPessoas(){
         if(uniqueInstance == null){
             uniqueInstance = new RepositorioPessoas();
         }
         return uniqueInstance;
     }
 
+    @Override
     public void cadastrarPessoa(Pessoa pessoa){
         if(!existePessoa(pessoa.getCpf())){
             pessoas.add(pessoa);
@@ -29,8 +30,8 @@ public class RepositorioPessoas {
             System.out.println("Cpf já cadastrado no sistema");
         }
     }
-
-    private boolean existePessoa(String cpf){
+    @Override
+    public boolean existePessoa(String cpf){
         for (Pessoa pessoa : pessoas){
             if (pessoa.getCpf().equals(cpf)){
                 return true;
@@ -40,6 +41,7 @@ public class RepositorioPessoas {
         return false;
     }
 
+    @Override
     public void removerPessoa(String cpf){
         Pessoa pessoa = buscarPessoaPorCpf(cpf);
 
@@ -50,6 +52,7 @@ public class RepositorioPessoas {
         }
     }
 
+    @Override
     public Pessoa buscarPessoaPorCpf(String cpf){
         for (Pessoa pessoa : pessoas){
             if (pessoa.getCpf().equals(cpf)){
@@ -59,10 +62,12 @@ public class RepositorioPessoas {
         return null;
     }
 
+    @Override
     public List<Pessoa> listarPessoas(){
         return pessoas;
     }
     
+    @Override
     public List<Pessoa> listarPessoasPorTipo(Class<?> tipo){
         List<Pessoa> pessoasDesejadas = new ArrayList<>();
         for (Pessoa pe : pessoas) {
@@ -72,6 +77,7 @@ public class RepositorioPessoas {
         }
         return pessoasDesejadas;
     }
+    @Override
     public List<Funcionario> listarFuncionariosQueMaisVendem(){
         List<Pessoa> pessoasDesejadas = listarPessoasPorTipo(Funcionario.class);
         List<Funcionario> funcionarios = new ArrayList<>();
@@ -89,7 +95,8 @@ public class RepositorioPessoas {
         return funcionariosQueMaisVenderam;
     }
     
-     public List<Cliente> listarClientesQueMaisCompram(){
+     @Override
+    public List<Cliente> listarClientesQueMaisCompram(){
 
         List<Pessoa> pessoasDesejadas = listarPessoasPorTipo(Cliente.class);
         List<Cliente> clientes = new ArrayList<>();

@@ -39,6 +39,7 @@ public class App {
         controladorCadastro.removerPessoa("546497253");
         
 
+        
         System.out.println("\n--------------------------------------------------------------");
          System.out.println("CLIENTES QUE MAIS COMPRAM\n");
         List<Cliente> clientesQueMaisCompram = controladorCadastro.listarClientesQueMaisCompram();

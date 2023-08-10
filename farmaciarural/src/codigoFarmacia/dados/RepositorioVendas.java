@@ -4,32 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 import codigoFarmacia.models.Venda;
 
-public class RepositorioVendas {
+public class RepositorioVendas implements IRepositorioVendas {
     private List<Venda> vendas;
-    private static RepositorioVendas uniqueInstance = null;
+    private static IRepositorioVendas uniqueInstance = null;
 
     private RepositorioVendas() {
         vendas = new ArrayList<>();
     }
 
-    public static RepositorioVendas getInstanceRepositorioVendas(){
+    public static IRepositorioVendas getInstanceRepositorioVendas(){
         if(uniqueInstance == null){
             uniqueInstance = new RepositorioVendas();
         }
         return uniqueInstance;
     }
 
+    @Override
     public void adicionarVenda(Venda venda) {
         vendas.add(venda);
     }
 
+    @Override
     public void removerVenda(Venda venda) {
         vendas.remove(venda);
     }
 
+    @Override
     public List<Venda> listarVendas() {
         return vendas;
     }
+    @Override
     public List<Venda> listarVendasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
         List<Venda> vendasNoPeriodo = new ArrayList<>();
 

@@ -3,10 +3,14 @@ package codigoFarmacia.controle;
 import codigoFarmacia.models.Produto;
 import codigoFarmacia.models.Venda;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+import codigoFarmacia.dados.IRepositorioPessoas;
+import codigoFarmacia.dados.IRepositorioProdutos;
+import codigoFarmacia.dados.IRepositorioVendas;
+import codigoFarmacia.dados.RepositorioPessoas;
 import codigoFarmacia.dados.RepositorioProdutos;
 import codigoFarmacia.dados.RepositorioVendas;
 import codigoFarmacia.models.Cliente;
@@ -14,13 +18,15 @@ import codigoFarmacia.models.Comprovante;
 import codigoFarmacia.models.Funcionario;
 
 public class ControladorVendas {
-    private RepositorioProdutos repositorioProdutos;
-    private RepositorioVendas repositorioVendas;
+    private IRepositorioProdutos repositorioProdutos;
+    private IRepositorioVendas repositorioVendas;
+    private IRepositorioPessoas repositorioPessoas;
     private static ControladorVendas instance;
 
     private ControladorVendas() {
         repositorioProdutos = RepositorioProdutos.getInstanceRepositorioProdutos();
         repositorioVendas = RepositorioVendas.getInstanceRepositorioVendas();
+        repositorioPessoas = RepositorioPessoas.getInstanceRepositorioPessoas();
     }
 
     public static ControladorVendas getInstanceControladorVendas() {
@@ -31,38 +37,24 @@ public class ControladorVendas {
     }
 
     public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente) {
-        if (compra != null && verificarEstoqueDisponivel(compra)) {
+        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.existePessoa(vendedor.getCpf()) && repositorioPessoas.existePessoa(cliente.getCpf())) {
             double valorTotal = calcularValorDaCompra(compra); 
             Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), vendedor.getIdAcessoSistema());
     
             if (verificarCompraControlada(compra)) {
                 System.out.println("Esta venda contém produtos controlados.");
             } else {
-                boolean produtosDisponiveis = true;
                 for (Produto produto : compra) {
                     Produto produtoNoEstoque = repositorioProdutos.buscarProduto(produto.getNome());
-    
-                    if (produtoNoEstoque == null || produtoNoEstoque.getQuantidade() <= 0) {
-                        produtosDisponiveis = false;
-                        break;
-                    }
+                    produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - produto.getQuantidade());
+                    repositorioProdutos.atualizarProduto(produtoNoEstoque);
                 }
-    
-                if (produtosDisponiveis) {
-                    for (Produto produto : compra) {
-                        Produto produtoNoEstoque = repositorioProdutos.buscarProduto(produto.getNome());
-                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - 1);
-                        repositorioProdutos.atualizarProduto(produtoNoEstoque);
-                    }
     
                     Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
                     repositorioVendas.adicionarVenda(venda);
-                } else {
-                    System.out.println("Alguns produtos não estão disponíveis em estoque.");
-                }
+                } 
             }
         }
-    }
 
     private double calcularValorDaCompra(List<Produto> compra) {
         double valorTotal = 0.0;
@@ -92,23 +84,6 @@ public class ControladorVendas {
         }
         return disponivel;
     }
-    /*public void realizarVenda(Venda venda) {
-        List<Produto> produtosVendidos = venda.getProdutos();
-        if (produtosVendidos != null && repositorioProdutos.buscarProduto(produtosVendidos.getNome()) != null) {
-            if (produtosVendidos.getQuantidade() > 0) {
-                produtosVendidos.setQuantidade(produtosVendidos.getQuantidade() - 1);
-                repositorioProdutos.atualizarProduto(produtosVendidos);
-                Comprovante comprovante = new Comprovante(venda.getProdutos(), produtosVendidos.getPreco());
-                venda.setComprovante(comprovante);
-                repositorioVendas.adicionarVenda(venda);
-            } else {
-                System.out.println("Produto n�o dispon�vel em estoque.");
-            }
-        } else {
-            System.out.println("Produto n�o encontrado.");
-        }
-    }
-    */
 
     public void adicionarProdutoAoEstoque(Produto produto, int quantidade) {
         if (produto != null && quantidade > 0) {
@@ -145,6 +120,22 @@ public class ControladorVendas {
         } else {
             System.out.println("Produto inv�lido ou quantidade inv�lida para remover do estoque.");
         }
+    }
+
+    public List<Produto> listarProdutosEmBaixoEstoque(){
+        return repositorioProdutos.listarProdutosEmBaixoEstoque();
+    }
+
+    public List<Produto> listarEstoque(){
+        return repositorioProdutos.listarProdutos();
+    }
+
+    public List<Venda> listarVendas(){
+        return repositorioVendas.listarVendas();
+    }
+
+    public List<Venda> listarVendasPorPeriodos(LocalDateTime inic, LocalDateTime fim){
+        return repositorioVendas.listarVendasPorPeriodo(inic, inic);
     }
 }
 

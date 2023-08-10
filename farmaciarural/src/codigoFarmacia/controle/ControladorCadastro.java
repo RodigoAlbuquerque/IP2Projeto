@@ -6,12 +6,14 @@ import codigoFarmacia.models.Produto;
 
 import java.util.List;
 
+import codigoFarmacia.dados.IRepositorioPessoas;
+import codigoFarmacia.dados.IRepositorioProdutos;
 import codigoFarmacia.dados.RepositorioPessoas;
 import codigoFarmacia.dados.RepositorioProdutos;
 
 public class ControladorCadastro {
-    private RepositorioPessoas repositorioPessoas;
-    private RepositorioProdutos repositorioProdutos;
+    private IRepositorioPessoas repositorioPessoas;
+    private IRepositorioProdutos repositorioProdutos;
     private static ControladorCadastro instance;
 
     private ControladorCadastro(){
