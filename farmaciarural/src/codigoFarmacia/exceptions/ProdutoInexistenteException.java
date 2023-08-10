@@ -6,15 +6,11 @@ public class ProdutoInexistenteException extends Exception{
     private Produto produto;
 
     public ProdutoInexistenteException(Produto produto){
+     super("Produto não existe");
+
         if (produto == null){
             throw new IllegalArgumentException();
         }
         this.produto = produto;
-    }
-
-    @Override
-    public String getMessage(){
-        String mensagem = "Produto não existe";
-        return mensagem;
     }
 }
