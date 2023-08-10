@@ -32,16 +32,34 @@ public class ControladorVendas {
 
     public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente) {
         if (compra != null && verificarEstoqueDisponivel(compra)) {
-            
             double valorTotal = calcularValorDaCompra(compra); 
             Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), vendedor.getIdAcessoSistema());
-
+    
             if (verificarCompraControlada(compra)) {
-            	
-                           
-                        } else {
-                Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
-                repositorioVendas.adicionarVenda(venda);
+                System.out.println("Esta venda contém produtos controlados.");
+            } else {
+                boolean produtosDisponiveis = true;
+                for (Produto produto : compra) {
+                    Produto produtoNoEstoque = repositorioProdutos.buscarProduto(produto.getNome());
+    
+                    if (produtoNoEstoque == null || produtoNoEstoque.getQuantidade() <= 0) {
+                        produtosDisponiveis = false;
+                        break;
+                    }
+                }
+    
+                if (produtosDisponiveis) {
+                    for (Produto produto : compra) {
+                        Produto produtoNoEstoque = repositorioProdutos.buscarProduto(produto.getNome());
+                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - 1);
+                        repositorioProdutos.atualizarProduto(produtoNoEstoque);
+                    }
+    
+                    Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
+                    repositorioVendas.adicionarVenda(venda);
+                } else {
+                    System.out.println("Alguns produtos não estão disponíveis em estoque.");
+                }
             }
         }
     }
