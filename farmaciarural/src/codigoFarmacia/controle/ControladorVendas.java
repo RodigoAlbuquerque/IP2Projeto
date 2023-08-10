@@ -16,6 +16,7 @@ import codigoFarmacia.dados.RepositorioVendas;
 import codigoFarmacia.models.Cliente;
 import codigoFarmacia.models.Comprovante;
 import codigoFarmacia.models.Funcionario;
+import codigoFarmacia.models.Pessoa;
 
 public class ControladorVendas {
     private IRepositorioProdutos repositorioProdutos;
@@ -37,22 +38,27 @@ public class ControladorVendas {
     }
 
     public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente) {
-        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.existePessoa(vendedor.getCpf()) && repositorioPessoas.existePessoa(cliente.getCpf())) {
-            double valorTotal = calcularValorDaCompra(compra); 
-            Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), vendedor.getIdAcessoSistema());
-    
-            if (verificarCompraControlada(compra)) {
-                System.out.println("Esta venda contém produtos controlados.");
-            } else {
-                for (Produto produto : compra) {
-                    Produto produtoNoEstoque = repositorioProdutos.buscarProduto(produto.getNome());
-                    produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - produto.getQuantidade());
-                    repositorioProdutos.atualizarProduto(produtoNoEstoque);
+        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.existePessoa(vendedor.getCpf())&& repositorioPessoas.existePessoa(cliente.getCpf())) {
+            Pessoa func = repositorioPessoas.buscarPessoaPorCpf(vendedor.getCpf());
+            if( func instanceof Funcionario ){
+                double valorTotal = calcularValorDaCompra(compra); 
+                Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), vendedor.getIdAcessoSistema());
+        
+                if (verificarCompraControlada(compra)) {
+                    return;
+                } else {
+                    for (Produto produto : compra) {
+                        Produto produtoNoEstoque = repositorioProdutos.buscarProduto(produto.getNome());
+                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - produto.getQuantidade());
+                        repositorioProdutos.atualizarProduto(produtoNoEstoque);
+                    }
+        
+                        Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
+                        repositorioVendas.adicionarVenda(venda);
+                        vendedor.setNumerodeVendas(vendedor.getNumerodeVendas()+1);
+                        cliente.setNumeroDeCompras(cliente.getNumeroDeCompras());
+                    } 
                 }
-    
-                    Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
-                    repositorioVendas.adicionarVenda(venda);
-                } 
             }
         }
 
@@ -78,7 +84,11 @@ public class ControladorVendas {
    private boolean verificarEstoqueDisponivel(List<Produto> compra){
         boolean disponivel = true;
         for(Produto pr:compra){
-            if(pr.getQuantidade() > repositorioProdutos.buscarProduto(pr.getNome()).getQuantidade()){
+            if(repositorioProdutos.buscarProduto(pr.getNome())!=null){
+                if(pr.getQuantidade() > repositorioProdutos.buscarProduto(pr.getNome()).getQuantidade()){
+                    disponivel = false;
+                }
+            }else{
                 disponivel = false;
             }
         }

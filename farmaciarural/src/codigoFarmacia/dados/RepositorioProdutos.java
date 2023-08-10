@@ -31,25 +31,27 @@ public class RepositorioProdutos implements IRepositorioProdutos {
 
     @Override
     public Produto buscarProduto(String nome) {
+        Produto prod = null;
         for (Produto produto : produtos) {
             if (produto.getNome().equalsIgnoreCase(nome)) {
-                return produto;
+                prod = produto;
             }
         }
-        return null;
+        return prod;
     }
 
     @Override
     public int buscarProduto(Produto pr){
         int posicao = 0;
-         if(pr == produtos.get(0)){
-            return posicao;
-         }
         for (Produto produto : produtos) {
             if(pr != produto){
                 posicao ++;
             }
         }
+        if(pr == produtos.get(0)){
+            posicao = 0;
+            return posicao;
+         }
         return posicao;
     }
     

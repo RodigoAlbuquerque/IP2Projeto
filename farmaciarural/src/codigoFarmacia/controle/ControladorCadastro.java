@@ -47,7 +47,7 @@ public class ControladorCadastro {
     public void cadastrarProduto(Produto produto){
         if( produto.getNome()!=null
             && produto.getPreco()!=null
-            && produto.isTarja()
+            && produto.getQuantidade() !=0
         ){
             repositorioProdutos.cadastrarProduto(produto);
         }
@@ -59,6 +59,7 @@ public class ControladorCadastro {
             }
         }
     }
+   
     public List<Produto> listarProdutos(){
         return repositorioProdutos.listarProdutos();
     }
