@@ -7,7 +7,7 @@ public class PessoaInexistenteException extends Exception{
 
     public PessoaInexistenteException(Pessoa pessoa){
         super("Pessoa não existe");
-        
+
         if (pessoa == null){
             throw new IllegalArgumentException();
         }

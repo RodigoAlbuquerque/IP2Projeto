@@ -1,6 +1,7 @@
 package codigoFarmacia;
 
 import codigoFarmacia.controle.ControladorCadastro;
+import codigoFarmacia.controle.ControladorProdutos;
 import codigoFarmacia.controle.ControladorVendas;
 import codigoFarmacia.models.Cliente;
 import codigoFarmacia.models.Funcionario;
@@ -17,6 +18,8 @@ public class App {
     public static void main(String[] args) throws Exception {
         ControladorCadastro controladorCadastro = ControladorCadastro.getInstanceControladorCadastro();
         ControladorVendas controladorVendas = ControladorVendas.getInstanceControladorVendas();
+        ControladorProdutos controladorProdutos = ControladorProdutos.getInstanceControladorProdutos();
+
         Pessoa f1 = new Funcionario("rodrigodogera@gmail.com", "Rodrigo escamoso",
                                         "147895564", LocalDateTime.now(), 123456, 10);
         Pessoa f2= new Funcionario("canetaazul@gmail.com", "Manuel gomes",
@@ -31,8 +34,8 @@ public class App {
         controladorCadastro.cadastrarPessoa(f3);
         controladorCadastro.cadastrarPessoa(f4);
 
-        controladorCadastro.cadastrarProduto(new Produto("Fluviral", 12.5, 30, false));
-        controladorCadastro.cadastrarProduto(new Produto("Omeprazol", 20.0, 4, true));
+        controladorProdutos.cadastrarProduto(new Produto("Fluviral", 12.5, 30, false));
+        controladorProdutos.cadastrarProduto(new Produto("Omeprazol", 20.0, 4, true));
 
         Pessoa c1=new Cliente("alanfogueteiro@gmail.com", "Alan ratao",
                                         "142536789", LocalDateTime.now());
@@ -47,7 +50,7 @@ public class App {
         controladorCadastro.cadastrarPessoa(c3);
         controladorCadastro.cadastrarPessoa(c4);
 
-        controladorCadastro.descadastrarProduto("Omeprazol");
+        controladorProdutos.descadastrarProduto("Omeprazol");
         controladorCadastro.removerPessoa("546497253");
        
         Produto p1 = new Produto("Fluviral",12.5,1,false);
@@ -67,7 +70,7 @@ public class App {
 
         System.out.println("*------------------------------------------------------------*\n");
         System.out.println("PRODUTOS CADASTRADOS\n");
-        List<Produto> produtosCadastrados = controladorCadastro.listarProdutos();
+        List<Produto> produtosCadastrados = controladorProdutos.listarProdutos();
         for(Produto pr: produtosCadastrados){
             System.out.println("Nome: " + pr.getNome() + " | Quantidade: "+ pr.getQuantidade()+"\n");
         }
@@ -129,7 +132,7 @@ public class App {
         System.out.println("\n--------------------------------------------------------------");
         System.out.println("*------------------------------------------------------------*\n");
         System.out.println("PRODUTOS CADASTRADOS\n");
-        List<Produto> produtosCadastrados2 = controladorCadastro.listarProdutos();
+        List<Produto> produtosCadastrados2 = controladorProdutos.listarProdutos();
         for(Produto pr: produtosCadastrados2){
             System.out.println("Nome: " + pr.getNome() + " | Quantidade: "+ pr.getQuantidade()+"\n");
         }

@@ -13,12 +13,10 @@ import codigoFarmacia.dados.RepositorioProdutos;
 
 public class ControladorCadastro {
     private IRepositorioPessoas repositorioPessoas;
-    private IRepositorioProdutos repositorioProdutos;
     private static ControladorCadastro instance;
 
     private ControladorCadastro(){
         repositorioPessoas = RepositorioPessoas.getInstanceRepositorioPessoas();
-        repositorioProdutos = RepositorioProdutos.getInstanceRepositorioProdutos();
     }
 
     public static ControladorCadastro getInstanceControladorCadastro(){
@@ -44,26 +42,6 @@ public class ControladorCadastro {
         }
     }
 
-    public void cadastrarProduto(Produto produto){
-        if( produto.getNome()!=null
-            && produto.getPreco()!=null
-            && produto.getQuantidade() !=0
-        ){
-            repositorioProdutos.cadastrarProduto(produto);
-        }
-    }
-    public void descadastrarProduto(String nome){
-        if(nome !=null){
-            if(repositorioProdutos.buscarProduto(nome)!=null){
-                repositorioProdutos.descadastrarProduto(repositorioProdutos.buscarProduto(nome));
-            }
-        }
-    }
-   
-    public List<Produto> listarProdutos(){
-        return repositorioProdutos.listarProdutos();
-    }
-
     public List<Cliente> listarClientesQueMaisCompram(){
         return repositorioPessoas.listarClientesQueMaisCompram();
     }
@@ -80,7 +58,4 @@ public class ControladorCadastro {
         return repositorioPessoas.listarPessoas();
     }
 
-    public List<Produto> listarProdutosEmBaixoEstoque(){
-        return repositorioProdutos.listarProdutosEmBaixoEstoque();
-    }
 }
