@@ -28,8 +28,5 @@ public class App {
         controladorCadastro.descadastrarProduto("Fluviral");
         controladorCadastro.removerPessoa("546497253");
 
-
-
->>>>>>> Stashed changes
     }
 }
