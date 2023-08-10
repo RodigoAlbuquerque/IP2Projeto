@@ -30,24 +30,28 @@ public class ControladorVendas {
         return instance;
     }
 
-    public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente){
-        if(compra != null && verificarEstoqueDisponivel(compra)){
-            //Criando comprovante da compra 
-            //Funcao que calcula valor da compra
-            Comprovante comprovante = new Comprovante(compra, 0.00, cliente.getCpf(), vendedor.getIdAcessoSistema());
+    public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente) {
+        if (compra != null && verificarEstoqueDisponivel(compra)) {
+            
+            double valorTotal = calcularValorDaCompra(compra); 
+            Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), vendedor.getIdAcessoSistema());
 
-            if(verificarCompraControlada(compra)){
-
-                
-
-
-            }else{
-                
-
-                Venda venda = new Venda(vendedor, cliente, compra, comprovante,LocalDateTime.now());
+            if (verificarCompraControlada(compra)) {
+            	
+                           
+                        } else {
+                Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
                 repositorioVendas.adicionarVenda(venda);
             }
         }
+    }
+
+    private double calcularValorDaCompra(List<Produto> compra) {
+        double valorTotal = 0.0;
+        for (Produto produto : compra) {
+            valorTotal += produto.getPreco() * produto.getQuantidade();
+        }
+        return valorTotal;
     }
 
     private boolean verificarCompraControlada(List<Produto> compra){
