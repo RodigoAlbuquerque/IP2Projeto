@@ -11,9 +11,6 @@ import java.time.LocalDateTime;
 public class App {
     public static void main(String[] args) throws Exception {
         ControladorCadastro controladorCadastro = ControladorCadastro.getInstanceControladorCadastro();
-<<<<<<< Updated upstream
-    
-=======
 
         controladorCadastro.cadastrarPessoa(new Funcionario("rodrigodogera@gmail.com", "Rodrigo escamoso",
                                         "147895564", LocalDateTime.now(), 123456, 10));
