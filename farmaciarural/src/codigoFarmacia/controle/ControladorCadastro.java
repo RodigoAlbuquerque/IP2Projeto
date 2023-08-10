@@ -76,4 +76,8 @@ public class ControladorCadastro {
     public List<Pessoa> listarPessoas(){
         return repositorioPessoas.listarPessoas();
     }
+
+    public List<Produto> listarProdutosEmBaixoEstoque(){
+        return repositorioProdutos.listarProdutosEmBaixoEstoque();
+    }
 }

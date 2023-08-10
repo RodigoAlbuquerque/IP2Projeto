@@ -30,7 +30,6 @@ public class RepositorioVendas {
     public List<Venda> listarVendas() {
         return vendas;
     }
-    
     public List<Venda> listarVendasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
         List<Venda> vendasNoPeriodo = new ArrayList<>();
 

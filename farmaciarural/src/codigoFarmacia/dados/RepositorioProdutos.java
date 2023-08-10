@@ -61,5 +61,14 @@ public class RepositorioProdutos {
     public List<Produto> listarProdutos() {
         return produtos;
     }
+    public List<Produto> listarProdutosEmBaixoEstoque(){
+        ArrayList<Produto> produtosEmBaixoEstoque = new ArrayList<>();
+        for(Produto pr: produtos){
+            if(pr.getQuantidade() < 2){
+                produtosEmBaixoEstoque.add(pr);
+            }
+        }
+        return produtosEmBaixoEstoque;
+    }
 
 }
