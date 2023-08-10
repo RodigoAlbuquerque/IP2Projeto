@@ -30,7 +30,7 @@ public class ControladorVendas {
         return instance;
     }
 
-    public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente){
+   /* public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente){
         if(compra != null && verificarEstoqueDisponivel(compra)){
             //Criando comprovante da compra 
             //Funcao que calcula valor da compra
@@ -49,7 +49,7 @@ public class ControladorVendas {
             }
         }
     }
-
+*/
     private boolean verificarCompraControlada(List<Produto> compra){
         boolean controlado = false;
         for(Produto pr: compra){
@@ -60,7 +60,7 @@ public class ControladorVendas {
         }
         return controlado;
     }
-    private boolean verificarEstoqueDisponivel(List<Produto> compra){
+  /*  private boolean verificarEstoqueDisponivel(List<Produto> compra){
         boolean disponivel = true;
         for(Produto pr:compra){
             if(pr.getQuantidade() > repositorioProdutos.get(repositorioProdutos.buscarProduto(pr)).getQuantidade()){
@@ -68,7 +68,7 @@ public class ControladorVendas {
             }
         }
         return disponivel;
-    }
+    }*/
     /*public void realizarVenda(Venda venda) {
         List<Produto> produtosVendidos = venda.getProdutos();
         if (produtosVendidos != null && repositorioProdutos.buscarProduto(produtosVendidos.getNome()) != null) {
