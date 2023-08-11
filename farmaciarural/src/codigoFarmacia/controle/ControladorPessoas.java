@@ -2,26 +2,24 @@ package codigoFarmacia.controle;
 import codigoFarmacia.models.Cliente;
 import codigoFarmacia.models.Funcionario;
 import codigoFarmacia.models.Pessoa;
-import codigoFarmacia.models.Produto;
 
 import java.util.List;
 
 import codigoFarmacia.dados.IRepositorioPessoas;
-import codigoFarmacia.dados.IRepositorioProdutos;
 import codigoFarmacia.dados.RepositorioPessoas;
-import codigoFarmacia.dados.RepositorioProdutos;
 
-public class ControladorCadastro {
+
+public class ControladorPessoas {
     private IRepositorioPessoas repositorioPessoas;
-    private static ControladorCadastro instance;
+    private static ControladorPessoas instance;
 
-    private ControladorCadastro(){
+    private ControladorPessoas(){
         repositorioPessoas = RepositorioPessoas.getInstanceRepositorioPessoas();
     }
 
-    public static ControladorCadastro getInstanceControladorCadastro(){
+    public static ControladorPessoas getInstanceControladorCadastro(){
         if(instance == null){
-            instance = new ControladorCadastro();
+            instance = new ControladorPessoas();
         }
         return instance;
     }

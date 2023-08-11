@@ -1,6 +1,6 @@
 package codigoFarmacia;
 
-import codigoFarmacia.controle.ControladorCadastro;
+import codigoFarmacia.controle.ControladorPessoas;
 import codigoFarmacia.controle.ControladorProdutos;
 import codigoFarmacia.controle.ControladorVendas;
 import codigoFarmacia.models.Cliente;
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        ControladorCadastro controladorCadastro = ControladorCadastro.getInstanceControladorCadastro();
+        ControladorPessoas controladorPessoas = ControladorPessoas.getInstanceControladorCadastro();
         ControladorVendas controladorVendas = ControladorVendas.getInstanceControladorVendas();
         ControladorProdutos controladorProdutos = ControladorProdutos.getInstanceControladorProdutos();
 
@@ -29,10 +29,10 @@ public class App {
         Pessoa f4=new Funcionario("rafaelmcc@gmail.com", "Rafael platinado",
                                         "546497253", LocalDateTime.now(), 147859, 15);
 
-        controladorCadastro.cadastrarPessoa(f1);
-        controladorCadastro.cadastrarPessoa(f2);
-        controladorCadastro.cadastrarPessoa(f3);
-        controladorCadastro.cadastrarPessoa(f4);
+        controladorPessoas.cadastrarPessoa(f1);
+        controladorPessoas.cadastrarPessoa(f2);
+        controladorPessoas.cadastrarPessoa(f3);
+        controladorPessoas.cadastrarPessoa(f4);
 
         controladorProdutos.cadastrarProduto(new Produto("Fluviral", 12.5, 30, false));
         controladorProdutos.cadastrarProduto(new Produto("Omeprazol", 20.0, 4, true));
@@ -45,13 +45,13 @@ public class App {
                                         "457985321", LocalDateTime.now());
         Pessoa c4=new Cliente("josedelas@gmail.com", "Jose delas",
                                         "145795533", LocalDateTime.now());
-        controladorCadastro.cadastrarPessoa(c1);
-        controladorCadastro.cadastrarPessoa(c2);
-        controladorCadastro.cadastrarPessoa(c3);
-        controladorCadastro.cadastrarPessoa(c4);
+        controladorPessoas.cadastrarPessoa(c1);
+        controladorPessoas.cadastrarPessoa(c2);
+        controladorPessoas.cadastrarPessoa(c3);
+        controladorPessoas.cadastrarPessoa(c4);
 
         controladorProdutos.descadastrarProduto("Omeprazol");
-        controladorCadastro.removerPessoa("546497253");
+        controladorPessoas.removerPessoa("546497253");
        
         Produto p1 = new Produto("Fluviral",12.5,1,false);
         Produto p2 = new Produto("Fluviral",12.5,3,false);
@@ -85,32 +85,32 @@ public class App {
 
         System.out.println("\n--------------------------------------------------------------");
          System.out.println("CLIENTES QUE MAIS COMPRAM\n");
-        List<Cliente> clientesQueMaisCompram = controladorCadastro.listarClientesQueMaisCompram();
+        List<Cliente> clientesQueMaisCompram = controladorPessoas.listarClientesQueMaisCompram();
         for(Cliente cl: clientesQueMaisCompram){
             System.out.println("Nome: "+ cl.getNome() +" | Compras: "+ cl.getNumeroDeCompras());
         }
         System.out.println("*------------------------------------------------------------*\n");
          System.out.println("FUNCIONARIOS QUE MAIS VENDEM\n");
-        List<Funcionario> funcionariosQueMaisVendem = controladorCadastro.listarFuncionariosQueMaisVendem();
+        List<Funcionario> funcionariosQueMaisVendem = controladorPessoas.listarFuncionariosQueMaisVendem();
         for(Funcionario fc: funcionariosQueMaisVendem){
             System.out.println("Nome: " + fc.getNome() + " | Vendas: " + fc.getNumerodeVendas());
         }
         System.out.println("\n--------------------------------------------------------------");
         System.out.println("PESSOAS CADASTRADAS\n");
-        List<Pessoa> pessoasCadastradas = controladorCadastro.listarPessoas();
+        List<Pessoa> pessoasCadastradas = controladorPessoas.listarPessoas();
         for(Pessoa pe: pessoasCadastradas){
             System.out.println("Nome: " + pe.getNome());
         }
        
         System.out.println("\n--------------------------------------------------------------");
         System.out.println("CLIENTES DA FARMACIA\n");
-        List<Pessoa> clientesDaFarmacia = controladorCadastro.listarPessoasPorTipo(Cliente.class);
+        List<Pessoa> clientesDaFarmacia = controladorPessoas.listarPessoasPorTipo(Cliente.class);
         for(Pessoa cl: clientesDaFarmacia){
             System.out.println("Nome: "+ cl.getNome());
         }
         System.out.println("*------------------------------------------------------------*\n");
         System.out.println("FUNCIONARIOS DA FARMACIA\n");
-        List<Pessoa> funcionariosDaFarmacia = controladorCadastro.listarPessoasPorTipo(Funcionario.class);
+        List<Pessoa> funcionariosDaFarmacia = controladorPessoas.listarPessoasPorTipo(Funcionario.class);
         for(Pessoa func: funcionariosDaFarmacia){
             System.out.println("Nome: " + func.getNome());
         }
