@@ -1,1 +1,1 @@
-package codigoFarmacia.gui;
+package codigofarmacia.gui;
