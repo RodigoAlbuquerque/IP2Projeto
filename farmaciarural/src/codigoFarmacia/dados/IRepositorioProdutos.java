@@ -1,8 +1,8 @@
-package codigoFarmacia.dados;
+package codigofarmacia.dados;
 
 import java.util.List;
 
-import codigoFarmacia.models.Produto;
+import codigofarmacia.models.Produto;
 
 public interface IRepositorioProdutos {
 
