@@ -1,4 +1,4 @@
-package codigoFarmacia.dados;
+package codigofarmacia.dados;
 
 import java.util.List;
 
