@@ -1,22 +1,22 @@
-package codigoFarmacia.controle;
+package codigofarmacia.controle;
 
-import codigoFarmacia.models.Produto;
-import codigoFarmacia.models.Venda;
+import codigofarmacia.models.Produto;
+import codigofarmacia.models.Venda;
 
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import codigoFarmacia.dados.IRepositorioPessoas;
-import codigoFarmacia.dados.IRepositorioProdutos;
-import codigoFarmacia.dados.IRepositorioVendas;
-import codigoFarmacia.dados.RepositorioPessoas;
-import codigoFarmacia.dados.RepositorioProdutos;
-import codigoFarmacia.dados.RepositorioVendas;
-import codigoFarmacia.models.Cliente;
-import codigoFarmacia.models.Comprovante;
-import codigoFarmacia.models.Funcionario;
-import codigoFarmacia.models.Pessoa;
+import codigofarmacia.dados.IRepositorioPessoas;
+import codigofarmacia.dados.IRepositorioProdutos;
+import codigofarmacia.dados.IRepositorioVendas;
+import codigofarmacia.dados.RepositorioPessoas;
+import codigofarmacia.dados.RepositorioProdutos;
+import codigofarmacia.dados.RepositorioVendas;
+import codigofarmacia.models.Cliente;
+import codigofarmacia.models.Comprovante;
+import codigofarmacia.models.Funcionario;
+import codigofarmacia.models.Pessoa;
 
 public class ControladorVendas {
     private IRepositorioProdutos repositorioProdutos;
