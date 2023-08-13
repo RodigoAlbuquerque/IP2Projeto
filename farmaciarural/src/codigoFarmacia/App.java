@@ -1,13 +1,13 @@
 package codigofarmacia;
 
-import codigoFarmacia.controle.ControladorPessoas;
-import codigoFarmacia.controle.ControladorProdutos;
-import codigoFarmacia.controle.ControladorVendas;
-import codigoFarmacia.models.Cliente;
-import codigoFarmacia.models.Funcionario;
-import codigoFarmacia.models.Pessoa;
-import codigoFarmacia.models.Produto;
-import codigoFarmacia.models.Venda;
+import codigofarmacia.controle.ControladorPessoas;
+import codigofarmacia.controle.ControladorProdutos;
+import codigofarmacia.controle.ControladorVendas;
+import codigofarmacia.models.Cliente;
+import codigofarmacia.models.Funcionario;
+import codigofarmacia.models.Pessoa;
+import codigofarmacia.models.Produto;
+import codigofarmacia.models.Venda;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
