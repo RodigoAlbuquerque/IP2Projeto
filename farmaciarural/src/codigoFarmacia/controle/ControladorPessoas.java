@@ -1,12 +1,12 @@
-package codigoFarmacia.controle;
-import codigoFarmacia.models.Cliente;
-import codigoFarmacia.models.Funcionario;
-import codigoFarmacia.models.Pessoa;
+package codigofarmacia.controle;
+import codigofarmacia.models.Cliente;
+import codigofarmacia.models.Funcionario;
+import codigofarmacia.models.Pessoa;
 
 import java.util.List;
 
-import codigoFarmacia.dados.IRepositorioPessoas;
-import codigoFarmacia.dados.RepositorioPessoas;
+import codigofarmacia.dados.IRepositorioPessoas;
+import codigofarmacia.dados.RepositorioPessoas;
 
 
 public class ControladorPessoas {
