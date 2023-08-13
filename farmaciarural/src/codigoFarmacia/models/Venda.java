@@ -1,4 +1,4 @@
-package codigofarmacia.models;
+package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,16 +6,16 @@ import java.util.List;
 public class Venda {
     private Funcionario funcionario;
     private Cliente cliente;
-    private List<Produto> produtos;
+    private List<ItemVenda> compra;
     private Comprovante comprovante;
     private LocalDateTime data;
 
-    public Venda(Funcionario funcionario, Cliente cliente,List<Produto> produtos,Comprovante comp, LocalDateTime data) {
+    public Venda(Funcionario funcionario, Cliente cliente,List<ItemVenda> produtos,Comprovante comp, LocalDateTime data) {
         this.funcionario = funcionario;
         this.cliente = cliente;
         this.data = data;
         this.comprovante = comp;
-        this.produtos = produtos;
+        this.compra = produtos;
     }
 
     public Comprovante getComprovante() {
@@ -42,12 +42,12 @@ public class Venda {
         this.cliente = cliente;
     }
    
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<ItemVenda> getItemVenda() {
+        return compra;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setItemVenda(List<ItemVenda> produtos) {
+        this.compra = produtos;
     }
 
 

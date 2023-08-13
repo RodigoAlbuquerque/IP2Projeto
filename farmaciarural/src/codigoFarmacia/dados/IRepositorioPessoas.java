@@ -1,10 +1,9 @@
-package codigofarmacia.dados;
+package codigoFarmacia.dados;
 
 import java.util.List;
 
-import codigofarmacia.models.Cliente;
-import codigofarmacia.models.Funcionario;
-import codigofarmacia.models.Pessoa;
+
+import codigoFarmacia.models.Pessoa;
 
 public interface IRepositorioPessoas {
 
@@ -20,8 +19,5 @@ public interface IRepositorioPessoas {
 
     List<Pessoa> listarPessoasPorTipo(Class<?> tipo);
 
-    List<Funcionario> listarFuncionariosQueMaisVendem();
-
-    List<Cliente> listarClientesQueMaisCompram();
 
 }

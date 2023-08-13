@@ -1,22 +1,23 @@
-package codigofarmacia.controle;
+package codigoFarmacia.controle;
 
-import codigofarmacia.models.Produto;
-import codigofarmacia.models.Venda;
+import codigoFarmacia.models.Produto;
+import codigoFarmacia.models.Venda;
 
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import codigofarmacia.dados.IRepositorioPessoas;
-import codigofarmacia.dados.IRepositorioProdutos;
-import codigofarmacia.dados.IRepositorioVendas;
-import codigofarmacia.dados.RepositorioPessoas;
-import codigofarmacia.dados.RepositorioProdutos;
-import codigofarmacia.dados.RepositorioVendas;
-import codigofarmacia.models.Cliente;
-import codigofarmacia.models.Comprovante;
-import codigofarmacia.models.Funcionario;
-import codigofarmacia.models.Pessoa;
+import codigoFarmacia.dados.IRepositorioPessoas;
+import codigoFarmacia.dados.IRepositorioProdutos;
+import codigoFarmacia.dados.IRepositorioVendas;
+import codigoFarmacia.dados.RepositorioPessoas;
+import codigoFarmacia.dados.RepositorioProdutos;
+import codigoFarmacia.dados.RepositorioVendas;
+import codigoFarmacia.models.Cliente;
+import codigoFarmacia.models.Comprovante;
+import codigoFarmacia.models.Funcionario;
+import codigoFarmacia.models.ItemVenda;
+import codigoFarmacia.models.Pessoa;
 
 public class ControladorVendas {
     private IRepositorioProdutos repositorioProdutos;
@@ -36,7 +37,7 @@ public class ControladorVendas {
         } 
         return instance;
     }
-//update Z
+
     public void realizarVenda(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente) { 
         if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.existePessoa(vendedor.getCpf())&& repositorioPessoas.existePessoa(cliente.getCpf())) {
             Pessoa func = repositorioPessoas.buscarPessoaPorCpf(vendedor.getCpf());
@@ -47,33 +48,32 @@ public class ControladorVendas {
                 if (verificarCompraControlada(compra)) {
                     return;
                 } else {
-                    for (Produto produto : compra) {
-                        Produto produtoNoEstoque = repositorioProdutos.buscarProduto(produto.getNome());
-                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - produto.getQuantidade());
+                    /*for (ItemVenda itemComprado : compra) {
+                        Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
+                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getProduto().getQuantidade());
                         repositorioProdutos.atualizarProduto(produtoNoEstoque);
                     }
-        
+                    */
                         Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
                         repositorioVendas.adicionarVenda(venda);
-                        vendedor.setNumerodeVendas(vendedor.getNumerodeVendas()+1);
-                        cliente.setNumeroDeCompras(cliente.getNumeroDeCompras());
+
                     } 
                 }
             }
         }
 
-    private double calcularValorDaCompra(List<Produto> compra) {
+    private double calcularValorDaCompra(List<ItemVenda> compra) {
         double valorTotal = 0.0;
-        for (Produto produto : compra) {
-            valorTotal += produto.getPreco() * produto.getQuantidade();
+        for (ItemVenda pr : compra) {
+            valorTotal += pr.getProduto().getPreco() * pr.getQuantidade();
         }
         return valorTotal;
     }
 
-    private boolean verificarCompraControlada(List<Produto> compra){
+    private boolean verificarCompraControlada(List<ItemVenda> compra){
         boolean controlado = false;
-        for(Produto pr: compra){
-            if(pr.isTarja()){
+        for(ItemVenda pr: compra){
+            if(pr.getProduto().isTarja()){
                 controlado = true;
                 break;
             }
@@ -81,11 +81,11 @@ public class ControladorVendas {
         return controlado;
     }
 
-   private boolean verificarEstoqueDisponivel(List<Produto> compra){
+   private boolean verificarEstoqueDisponivel(List<ItemVenda> compra){
         boolean disponivel = true;
-        for(Produto pr:compra){
-            if(repositorioProdutos.buscarProduto(pr.getNome())!=null){
-                if(pr.getQuantidade() > repositorioProdutos.buscarProduto(pr.getNome()).getQuantidade()){
+        for(ItemVenda pr:compra){
+            if(repositorioProdutos.buscarProduto(pr.getProduto().getNome())!=null){
+                if(pr.getQuantidade() > repositorioProdutos.buscarProduto(pr.getProduto().getNome()).getQuantidade()){
                     disponivel = false;
                 }
             }else{

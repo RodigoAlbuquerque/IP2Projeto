@@ -1,8 +1,8 @@
-package codigofarmacia.dados;
+package codigoFarmacia.dados;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import codigofarmacia.models.Venda;
+import codigoFarmacia.models.Venda;
 
 public class RepositorioVendas implements IRepositorioVendas {
     private List<Venda> vendas;
@@ -39,10 +39,11 @@ public class RepositorioVendas implements IRepositorioVendas {
 
         for (Venda venda : vendas) {
             LocalDateTime dataVenda = venda.getData();
-            if (dataVenda.isAfter(dataInicial) && dataVenda.isBefore(dataFinal)) {
+            if (dataVenda.getDayOfYear() > dataInicial.getDayOfYear() && dataVenda.getDayOfYear() < dataFinal.getDayOfYear()) {
                 vendasNoPeriodo.add(venda);
             }
         }
         return vendasNoPeriodo;
     }
+   
 }

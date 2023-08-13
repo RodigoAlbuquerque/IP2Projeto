@@ -1,4 +1,4 @@
-package codigofarmacia.models;
+package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,7 +7,7 @@ public class VendaTarja extends Venda {
 
     private List<byte[]> receita;
 
-    public VendaTarja(Funcionario funcionario, Cliente cliente, List<Produto> produtos,Comprovante comp, LocalDateTime data,List<byte[]>receita) {
+    public VendaTarja(Funcionario funcionario, Cliente cliente, List<ItemVenda> produtos,Comprovante comp, LocalDateTime data,List<byte[]>receita) {
         super(funcionario, cliente, produtos, comp, data);
         this.receita = receita;
     }

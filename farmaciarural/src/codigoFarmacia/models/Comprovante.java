@@ -1,26 +1,26 @@
-package codigofarmacia.models;
+package codigoFarmacia.models;
 
 import java.util.List;
 
 public class Comprovante {
     
-    private List<Produto> produtosVendidos;
+    private List<ItemVenda> produtosVendidos;
     private double valorDaCompra;
     private String cpf;
     private Double idAcessFuncionario;
 
-    public Comprovante(List<Produto> produtosVendidos, double valorDaCompra,String cpf, Double idAcess) {
+    public Comprovante(List<ItemVenda> produtosVendidos, double valorDaCompra,String cpf, Double idAcess) {
         this.produtosVendidos = produtosVendidos;
         this.valorDaCompra = valorDaCompra;
         this.cpf = cpf;
         this.idAcessFuncionario = idAcess;
     }
 
-  public List<Produto> getProdutosVendidos() {
+  public List<ItemVenda> getProdutosVendidos() {
         return produtosVendidos;
     }
 
-    public void setProdutosVendidos(List<Produto> produtosVendidos) {
+    public void setProdutosVendidos(List<ItemVenda> produtosVendidos) {
         this.produtosVendidos = produtosVendidos;
     }
 

@@ -1,6 +1,6 @@
-package codigofarmacia.exceptions;
+package codigoFarmacia.exceptions;
 
-import codigofarmacia.models.Produto;
+import codigoFarmacia.models.Produto;
 
 public class ProdutoInexistenteException extends Exception{
     private Produto produto;

@@ -1,11 +1,8 @@
-package codigofarmacia.dados;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+package codigoFarmacia.dados;
 
-import codigofarmacia.models.Cliente;
-import codigofarmacia.models.Funcionario;
-import codigofarmacia.models.Pessoa;
+import java.util.ArrayList;
+import java.util.List;
+import codigoFarmacia.models.Pessoa;
 
 public class RepositorioPessoas implements IRepositorioPessoas {
     private List<Pessoa> pessoas;
@@ -77,43 +74,8 @@ public class RepositorioPessoas implements IRepositorioPessoas {
         }
         return pessoasDesejadas;
     }
-    @Override
-    public List<Funcionario> listarFuncionariosQueMaisVendem(){
-        List<Pessoa> pessoasDesejadas = listarPessoasPorTipo(Funcionario.class);
-        List<Funcionario> funcionarios = new ArrayList<>();
-        for(Pessoa pe:pessoasDesejadas){
-            if(pe instanceof Funcionario){
-                funcionarios.add((Funcionario)pe);
-            }
-        }
-        Collections.sort(funcionarios);
 
-        List<Funcionario> funcionariosQueMaisVenderam = new ArrayList<>();
-        funcionariosQueMaisVenderam.add(funcionarios.get(0));
-        funcionariosQueMaisVenderam.add(funcionarios.get(1));
-        funcionariosQueMaisVenderam.add(funcionarios.get(2));
-        return funcionariosQueMaisVenderam;
-    }
-    
-     @Override
-    public List<Cliente> listarClientesQueMaisCompram(){
-
-        List<Pessoa> pessoasDesejadas = listarPessoasPorTipo(Cliente.class);
-        List<Cliente> clientes = new ArrayList<>();
-        for(Pessoa pe:pessoasDesejadas){
-            if(pe instanceof Cliente){
-                clientes.add((Cliente)pe);
-            }
-        }
-        Collections.sort(clientes);
-
-        List<Cliente> clientesQueMaisCompram = new ArrayList<>();
-        clientesQueMaisCompram.add(clientes.get(0));
-        clientesQueMaisCompram.add(clientes.get(1));
-        clientesQueMaisCompram.add(clientes.get(2));
-        return clientesQueMaisCompram;
-    }
- 
+  
 
   
 

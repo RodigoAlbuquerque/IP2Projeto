@@ -1,25 +1,23 @@
-package codigofarmacia.models;
+package codigoFarmacia.models;
 
 import java.time.LocalDateTime;
 
-public class Cliente extends Pessoa implements Comparable<Cliente> {
+public class Cliente extends Pessoa {
    
-    private int numeroDeCompras;
+    private boolean premium;
 
-    public Cliente(String email, String nome, String cpf, LocalDateTime dataNascimento) {
+    public Cliente(String email, String nome, String cpf, LocalDateTime dataNascimento,boolean prem) {
         super(email, nome, cpf, dataNascimento);
-        numeroDeCompras = 0;
+        this.premium = prem;
     }
 
-    public int getNumeroDeCompras() {
-        return numeroDeCompras;
+      public boolean isPremium() {
+        return premium;
     }
 
-    public void setNumeroDeCompras(int numeroDeCompras) {
-        this.numeroDeCompras = numeroDeCompras;
+    public void setPremium(boolean premium) {
+        this.premium = premium;
     }
-    @Override
-    public int compareTo(Cliente tCliente){
-        return (getNumeroDeCompras() - tCliente.getNumeroDeCompras());
-    }
+
+   
 }

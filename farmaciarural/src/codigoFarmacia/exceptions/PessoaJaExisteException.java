@@ -1,6 +1,6 @@
-package codigofarmacia.exceptions;
+package codigoFarmacia.exceptions;
 
-import codigofarmacia.models.Pessoa;
+import codigoFarmacia.models.Pessoa;
 
 public class PessoaJaExisteException extends Exception{
     private Pessoa pessoa;
