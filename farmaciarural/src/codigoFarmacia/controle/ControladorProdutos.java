@@ -1,8 +1,8 @@
-package codigoFarmacia.controle;
+package codigofarmacia.controle;
 
-import codigoFarmacia.dados.IRepositorioProdutos;
-import codigoFarmacia.dados.RepositorioProdutos;
-import codigoFarmacia.models.Produto;
+import codigofarmacia.dados.IRepositorioProdutos;
+import codigofarmacia.dados.RepositorioProdutos;
+import codigofarmacia.models.Produto;
 
 import java.util.List;
 
