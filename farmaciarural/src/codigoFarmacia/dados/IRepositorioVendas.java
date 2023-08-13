@@ -1,9 +1,9 @@
-package codigoFarmacia.dados;
+package codigofarmacia.dados;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import codigoFarmacia.models.Venda;
+import codigofarmacia.models.Venda;
 
 public interface IRepositorioVendas {
 
