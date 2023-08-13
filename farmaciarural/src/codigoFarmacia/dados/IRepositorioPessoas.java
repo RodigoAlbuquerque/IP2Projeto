@@ -2,9 +2,9 @@ package codigofarmacia.dados;
 
 import java.util.List;
 
-import codigoFarmacia.models.Cliente;
-import codigoFarmacia.models.Funcionario;
-import codigoFarmacia.models.Pessoa;
+import codigofarmacia.models.Cliente;
+import codigofarmacia.models.Funcionario;
+import codigofarmacia.models.Pessoa;
 
 public interface IRepositorioPessoas {
 
