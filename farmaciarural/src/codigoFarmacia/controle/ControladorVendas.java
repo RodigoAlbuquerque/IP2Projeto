@@ -36,8 +36,8 @@ public class ControladorVendas {
         } 
         return instance;
     }
-
-    public void realizarVenda(List<Produto> compra, Funcionario vendedor, Cliente cliente) {
+//update Z
+    public void realizarVenda(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente) { 
         if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.existePessoa(vendedor.getCpf())&& repositorioPessoas.existePessoa(cliente.getCpf())) {
             Pessoa func = repositorioPessoas.buscarPessoaPorCpf(vendedor.getCpf());
             if( func instanceof Funcionario ){
