@@ -1,4 +1,4 @@
-package codigoFarmacia;
+package codigofarmacia;
 
 import codigoFarmacia.controle.ControladorPessoas;
 import codigoFarmacia.controle.ControladorProdutos;
