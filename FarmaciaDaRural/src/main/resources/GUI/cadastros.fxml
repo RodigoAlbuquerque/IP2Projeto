@@ -6,25 +6,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="226.0" layoutY="59.0" text="CADASTROS">
+        <Label layoutX="540.0" layoutY="111.0" text="CADASTROS" underline="true">
             <font>
-                <Font size="24.0" />
+                <Font size="36.0" />
             </font>
         </Label>
-        <Button layoutX="37.0" layoutY="179.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="148.0" text="Cadastro de Funcionário">
+        <Button layoutX="303.0" layoutY="377.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Cadastro de funcionário">
             <effect>
                 <InnerShadow />
             </effect>
         </Button>
-        <Button layoutX="219.0" layoutY="179.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="148.0" text="Cadastro de Cliente">
+        <Button layoutX="540.0" layoutY="377.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Cadastro de cliente">
             <effect>
                 <InnerShadow />
             </effect>
         </Button>
-        <Button layoutX="407.0" layoutY="178.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="148.0" text="Cadastro de Produto">
+        <Button layoutX="777.0" layoutY="377.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Cadastro de Produto">
             <effect>
                 <InnerShadow />
             </effect>
