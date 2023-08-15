@@ -6,40 +6,39 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="256.0" layoutY="50.0" text="VENDER">
+        <Label layoutX="574.0" layoutY="82.0" text="VENDER" underline="true">
             <font>
-                <Font size="24.0" />
+                <Font name="Century Gothic Bold" size="36.0" />
             </font>
         </Label>
-        <Button layoutX="93.0" layoutY="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="76.0" text="Opção 1">
+        <Button layoutX="528.0" layoutY="282.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Opção 2">
             <effect>
                 <InnerShadow />
             </effect>
         </Button>
-        <Button layoutX="262.0" layoutY="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="76.0" text="Opção 2">
+        <Button layoutX="850.0" layoutY="457.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Opção 6">
             <effect>
                 <InnerShadow />
             </effect>
         </Button>
-        <Button layoutX="447.0" layoutY="135.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="76.0" text="Opção 3">
+        <Button layoutX="843.0" layoutY="282.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Opção 3">
             <effect>
                 <InnerShadow />
             </effect>
         </Button>
-        <Button layoutX="93.0" layoutY="253.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="76.0" text="Opção 4">
+        <Button layoutX="219.0" layoutY="450.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Opção 4">
             <effect>
                 <InnerShadow />
             </effect>
         </Button>
-        <Button layoutX="262.0" layoutY="253.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="76.0" text="Opção 5">
+        <Button layoutX="204.0" layoutY="282.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Opção 1">
             <effect>
                 <InnerShadow />
             </effect>
         </Button>
-        <Button layoutX="447.0" layoutY="253.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="76.0" text="Opção 6">
+        <Button layoutX="555.0" layoutY="457.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="Opção 5">
             <effect>
                 <InnerShadow />
             </effect>
