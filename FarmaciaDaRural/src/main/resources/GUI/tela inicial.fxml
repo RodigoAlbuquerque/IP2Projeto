@@ -6,33 +6,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-
-    <children>
-        <Label layoutX="149.0" layoutY="63.0" text="BEM VINDO À FARMACIA DA RURAL !">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
-        <Button layoutX="41.0" layoutY="207.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="92.0" text="CADASTRO">
-            <effect>
-                <InnerShadow />
-            </effect>
-        </Button>
-        <Button layoutX="184.0" layoutY="207.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="92.0" text="VENDER">
-            <effect>
-                <InnerShadow />
-            </effect>
-        </Button>
-        <Button layoutX="321.0" layoutY="207.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" text="ESTOQUE">
-            <effect>
-                <InnerShadow />
-            </effect>
-        </Button>
-        <Button layoutX="465.0" layoutY="207.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="103.0" text="HISTÓRICO">
-            <effect>
-                <InnerShadow />
-            </effect>
-        </Button>
-    </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   
+   <children>
+      <Label layoutX="323.0" layoutY="111.0" text="BEM VINDO À FARMACIA DA RURAL !" underline="true">
+         <font>
+            <Font name="Century Gothic Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="523.0" layoutY="256.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="CADASTRO">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Button layoutX="523.0" layoutY="354.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="VENDER">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Button layoutX="523.0" layoutY="454.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="ESTOQUE">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Button layoutX="523.0" layoutY="554.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" text="HISTÓRICO">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+   </children>
 </Pane>
