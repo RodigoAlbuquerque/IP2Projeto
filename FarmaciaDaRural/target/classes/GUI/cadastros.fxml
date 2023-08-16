@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TelaCadastroController">
+    <children>
+        <Label layoutX="135.0" layoutY="61.0" text="O QUE DESEJA CADASTRAR?" textFill="#806d6b">
+            <font>
+                <Font name="Times New Roman Bold Italic" size="24.0" />
+            </font>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="2.0" specularConstant="0.0" specularExponent="0.0" surfaceScale="4.83">
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+        </Label>
+        <Button layoutX="215.0" layoutY="102.0" mnemonicParsing="false" onAction="#mudarTelaParaCadastroFuncionario" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #804742;" text="FUNCIONARIOS" textFill="#eeccc9">
+            <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+            </effect>
+         <font>
+            <Font name="Lucida Sans Unicode" size="18.0" />
+         </font>
+        </Button>
+      <Button layoutX="215.0" layoutY="168.0" mnemonicParsing="false" onAction="#mudarTelaParaCadastroCliente" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #804742;" text="CLIENTES" textFill="#eeccc9">
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+         <font>
+            <Font name="Lucida Sans Unicode" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="215.0" layoutY="230.0" mnemonicParsing="false" onAction="#mudarTelaParaCadastroProduto" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #804742;" text="PRODUTOS" textFill="#eeccc9">
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+         <font>
+            <Font name="Lucida Sans Unicode" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="215.0" layoutY="292.0" mnemonicParsing="false" onAction="#voltar" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: #804742;" text="VOLTAR" textFill="#eeccc9">
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+         <font>
+            <Font name="Lucida Sans Unicode" size="18.0" />
+         </font>
+      </Button>
+    </children>
+</Pane>

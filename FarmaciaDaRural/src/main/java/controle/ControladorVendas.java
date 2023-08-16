@@ -2,11 +2,8 @@ package controle;
 
 import models.Produto;
 import models.Venda;
-
-
 import java.time.LocalDateTime;
 import java.util.List;
-
 import dados.IRepositorioPessoas;
 import dados.IRepositorioProdutos;
 import dados.IRepositorioVendas;
@@ -48,15 +45,13 @@ public class ControladorVendas {
                 if (verificarCompraControlada(compra)) {
                     return;
                 } else {
-                    /*for (ItemVenda itemComprado : compra) {
+                    for (ItemVenda itemComprado : compra) {
                         Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
-                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getProduto().getQuantidade());
+                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
                         repositorioProdutos.atualizarProduto(produtoNoEstoque);
                     }
-                    */
                         Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
                         repositorioVendas.adicionarVenda(venda);
-
                     } 
                 }
             }
