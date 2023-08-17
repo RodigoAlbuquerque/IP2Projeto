@@ -18,6 +18,8 @@ public class ScreenManager {
     private  Scene sceneCadastros;
     private TelaCadastroController telaCadastroController;
 
+    private Scene sceneEstoque;
+
     private Scene sceneCadastroFuncionario;
 
     private Scene sceneCadastroProduto;
@@ -25,6 +27,8 @@ public class ScreenManager {
     private Scene sceneCadastroCliente;
 
     private  Scene sceneVendas;
+
+    private Scene sceneRelatorios;
 
     private ScreenManager(){
         this.initialize();
@@ -61,10 +65,18 @@ public class ScreenManager {
             Parent parentTelaCadastro = telaCadastro.load();
             sceneCadastros = new Scene(parentTelaCadastro, 600 , 400);
 
-          /*   FXMLLoader telaVendas = new FXMLLoader(getClass().getResource("vendas.fxml"));
+            FXMLLoader telaVendas = new FXMLLoader(getClass().getResource("telaVendas.fxml"));
             Parent parentTelaVendas = telaVendas.load();
             sceneVendas = new Scene(parentTelaVendas, 600 , 400);
-        */
+
+            FXMLLoader telaRelatorios = new FXMLLoader(getClass().getResource("telaRelatorios.fxml"));
+            Parent parentTelaRelatorios = telaRelatorios.load();
+            sceneRelatorios = new Scene(parentTelaRelatorios, 600 , 400);
+
+            FXMLLoader telaEstoque = new FXMLLoader(getClass().getResource("telaEstoque.fxml"));
+            Parent parentTelaEstoque = telaEstoque.load();
+            sceneEstoque = new Scene(parentTelaEstoque, 600 , 400);
+        
         }
         catch(IOException e ){
             e.printStackTrace();
@@ -87,6 +99,15 @@ public class ScreenManager {
                 break;
             case 4:
                 primaryStage.setScene(sceneCadastroFuncionario);
+                break;
+            case 5:
+                primaryStage.setScene(sceneVendas);
+                break;
+            case 6:
+                primaryStage.setScene(sceneRelatorios);
+                break;
+            case 7:
+                primaryStage.setScene(sceneEstoque);
                 break;
             default:
                 primaryStage.setScene(mainScene);

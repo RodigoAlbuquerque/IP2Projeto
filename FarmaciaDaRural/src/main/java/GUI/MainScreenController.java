@@ -7,15 +7,15 @@ public class MainScreenController  {
     }
 
     public void mudarTelaParaVendas(){
-        ScreenManager.getInstance().changeScreen(2);
+        ScreenManager.getInstance().changeScreen(5);
     }
 
     public void mudarTelaParaEstoque(){
-        ScreenManager.getInstance().changeScreen(3);
+        ScreenManager.getInstance().changeScreen(7);
     }
 
     public void mudarTelaParaRelatorios(){
-        ScreenManager.getInstance().changeScreen(4);
+        ScreenManager.getInstance().changeScreen(6);
     }
 
 }
