@@ -2,6 +2,7 @@ package controle;
 
 import dados.IRepositorioProdutos;
 import dados.RepositorioProdutos;
+import exceptions.ProdutoJaExisteException;
 import models.Produto;
 
 import java.util.List;
@@ -21,13 +22,14 @@ public class ControladorProdutos {
         return instance;
     }
 
-    public void cadastrarProduto(Produto produto){
+    public void cadastrarProduto(Produto produto)throws ProdutoJaExisteException {
         if( produto.getNome()!=null
                 && produto.getPreco()!=null
                 && produto.getQuantidade() !=0
         ){
             repositorioProdutos.cadastrarProduto(produto);
         }
+        else{throw new ProdutoJaExisteException(produto);}
     }
 
     public void descadastrarProduto(String nome){

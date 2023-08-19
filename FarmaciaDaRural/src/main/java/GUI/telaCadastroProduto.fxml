@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="574.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="574.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TelaCadastroProdutoController">
    <children>
       <Label layoutX="119.0" layoutY="227.0" text="PREÇO">
          <font>
@@ -32,7 +32,7 @@
             <Font name="Times New Roman Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="416.0" layoutY="130.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="122.0" style="-fx-background-color: #804742;" text="CADASTRAR" textFill="#eeccc9">
+      <Button layoutX="416.0" layoutY="130.0" mnemonicParsing="false" onAction="#botaoCadastrar" prefHeight="28.0" prefWidth="122.0" style="-fx-background-color: #804742;" text="CADASTRAR" textFill="#eeccc9">
          <effect>
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
@@ -40,7 +40,7 @@
             <Font name="Lucida Sans Unicode" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="416.0" layoutY="256.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="122.0" style="-fx-background-color: #804742;" text="CANCELAR" textFill="#eeccc9">
+      <Button layoutX="416.0" layoutY="256.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="28.0" prefWidth="122.0" style="-fx-background-color: #804742;" text="CANCELAR" textFill="#eeccc9">
          <effect>
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
