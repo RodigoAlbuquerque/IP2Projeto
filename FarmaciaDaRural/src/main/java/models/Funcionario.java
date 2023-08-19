@@ -1,12 +1,12 @@
 package models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Funcionario extends Pessoa {
 
     private double idAcessoSistema;
    
-    public Funcionario(String email, String nome, String cpf, LocalDateTime dataNascimento, double idAcesso ) {
+    public Funcionario(String email, String nome, String cpf, LocalDate dataNascimento, double idAcesso ) {
         super(email, nome, cpf, dataNascimento);
         idAcessoSistema = idAcesso;
     

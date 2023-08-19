@@ -1,16 +1,17 @@
 package models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 
 public abstract class Pessoa {
     private String email;
     private String nome;
     private String cpf;
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
     private int idade;
 
-    public Pessoa(String email, String nome, String cpf, LocalDateTime dataNascimento) {
+    public Pessoa(String email, String nome, String cpf, LocalDate dataNascimento) {
         this.email = email;
         this.nome = nome;
         this.cpf = cpf;
@@ -42,11 +43,11 @@ public abstract class Pessoa {
         this.cpf = cpf;
     }
 
-   public LocalDateTime getDataNascimento() {
+   public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDateTime dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
     
@@ -57,8 +58,8 @@ public abstract class Pessoa {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    private void calcularIdade(LocalDateTime dataNascimento){
-        LocalDateTime hoje = LocalDateTime.now();
+    private void calcularIdade(LocalDate dataNascimento){
+        LocalDate hoje = LocalDate.now();
         int anoAtual = hoje.getYear();
         int idadeAtual = anoAtual - dataNascimento.getYear();
         setIdade(idadeAtual);

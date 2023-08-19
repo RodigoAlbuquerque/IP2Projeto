@@ -15,6 +15,7 @@ import dados.IRepositorioPessoas;
 import dados.IRepositorioVendas;
 import dados.RepositorioPessoas;
 import dados.RepositorioVendas;
+import exceptions.PessoaJaExisteException;
 
 
 public class ControladorPessoas {
@@ -34,13 +35,12 @@ public class ControladorPessoas {
         return instance;
     }
 
-    public void cadastrarPessoa(Pessoa pessoa){
-        if( pessoa.getCpf() != null
-            && pessoa.getNome() != null 
-            && pessoa.getEmail()!=null
-            && pessoa.getDataNascimento()!=null
-        ){
+    public void cadastrarPessoa(Pessoa pessoa) throws PessoaJaExisteException{
+        if(!repositorioPessoas.existePessoa(pessoa.getCpf())){
             repositorioPessoas.cadastrarPessoa(pessoa);
+        }
+        else{
+            throw new PessoaJaExisteException(pessoa);
         }
     }
 
