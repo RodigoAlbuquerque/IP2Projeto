@@ -36,11 +36,13 @@ public class ControladorPessoas {
     }
 
     public void cadastrarPessoa(Pessoa pessoa) throws PessoaJaExisteException{
-        if(!repositorioPessoas.existePessoa(pessoa.getCpf())){
-            repositorioPessoas.cadastrarPessoa(pessoa);
+        if(repositorioPessoas.verificarCpf(pessoa.getCpf()) ||
+           pessoa instanceof Funcionario && repositorioPessoas.verificarIdAcesso(((Funcionario)pessoa).getIdAcessoSistema())             
+        ){
+            throw new PessoaJaExisteException(pessoa);    
         }
         else{
-            throw new PessoaJaExisteException(pessoa);
+            repositorioPessoas.cadastrarPessoa(pessoa);
         }
     }
 

@@ -11,7 +11,9 @@ public interface IRepositorioPessoas {
 
     Pessoa buscarPessoaPorCpf(String cpf);
     
-    boolean existePessoa(String cpf);
+    boolean verificarCpf(String cpf);
+
+    boolean verificarIdAcesso(Double IdAcesso);
 
     List<Pessoa> listarPessoas();
 

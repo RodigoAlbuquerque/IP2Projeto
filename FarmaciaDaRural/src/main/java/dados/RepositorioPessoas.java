@@ -2,6 +2,8 @@ package dados;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Funcionario;
 import models.Pessoa;
 
 public class RepositorioPessoas implements IRepositorioPessoas {
@@ -21,20 +23,26 @@ public class RepositorioPessoas implements IRepositorioPessoas {
 
     @Override
     public void cadastrarPessoa(Pessoa pessoa){
-        if(!existePessoa(pessoa.getCpf())){
-            pessoas.add(pessoa);
-        }else{
-            System.out.println("Cpf já cadastrado no sistema");
-        }
+        pessoas.add(pessoa);
     }
+
     @Override
-    public boolean existePessoa(String cpf){
+    public boolean verificarCpf(String cpf){
         for (Pessoa pessoa : pessoas){
             if (pessoa.getCpf().equals(cpf)){
                 return true;
             }
         }
 
+        return false;
+    }
+    @Override
+    public boolean verificarIdAcesso(Double IdAcesso){
+         for (Pessoa pessoa : pessoas){
+            if (pessoa instanceof Funcionario && ((Funcionario)pessoa).getIdAcessoSistema() == IdAcesso){
+                return true;
+            }
+        }
         return false;
     }
 

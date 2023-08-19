@@ -13,6 +13,8 @@ public interface IRepositorioProdutos {
     Produto buscarProduto(String nome);
 
     int buscarProduto(Produto pr);
+    
+    boolean verificarProdutoExistente(String nome);
 
     void atualizarProduto(Produto produto);
 

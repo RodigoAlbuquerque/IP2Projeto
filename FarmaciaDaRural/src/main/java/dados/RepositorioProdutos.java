@@ -28,7 +28,15 @@ public class RepositorioProdutos implements IRepositorioProdutos {
     public void descadastrarProduto(Produto produto) {
         produtos.remove(produto);
     }
-
+    @Override
+    public boolean verificarProdutoExistente(String nome){
+        for(Produto pr: produtos){
+            if(pr.getNome() == nome){
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public Produto buscarProduto(String nome) {
         Produto prod = null;
