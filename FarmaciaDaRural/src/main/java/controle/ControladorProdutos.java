@@ -22,8 +22,9 @@ public class ControladorProdutos {
         return instance;
     }
 
-    public void cadastrarProduto(Produto produto) throws ProdutoJaExisteException {
-        if( repositorioProdutos.verificarProdutoExistente(produto.getNome())
+    public void cadastrarProduto(Produto produto)throws ProdutoJaExisteException {
+        if(!repositorioProdutos.verificarProdutoExistente(produto.getNome())
+
         ){
            throw new ProdutoJaExisteException(produto);
         }

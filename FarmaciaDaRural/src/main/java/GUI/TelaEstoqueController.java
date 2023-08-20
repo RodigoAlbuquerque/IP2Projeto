@@ -44,7 +44,7 @@ public class TelaEstoqueController {
 
     @FXML
     public void voltar(){
-        ScreenManager.getInstance().changeScreen(6);
+        ScreenManager.getInstance().changeScreen(0);
     }
 
     @FXML
