@@ -23,8 +23,7 @@ public class ControladorProdutos {
     }
 
     public void cadastrarProduto(Produto produto)throws ProdutoJaExisteException {
-        if( produto.getNome()!=null
-                && produto.getPreco()!=null
+        if(!repositorioProdutos.verificarProdutoExistente(produto.getNome())
         ){
             repositorioProdutos.cadastrarProduto(produto);
         }
