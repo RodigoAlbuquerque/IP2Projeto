@@ -61,12 +61,22 @@ private boolean validarCampos2(){
     }
 
 
+    public static boolean ValidarNome(String nome){
+    nome = nome.replaceAll("[^a-zA-Z]","");
+return nome.matches("[^a-zA-Z]");
+}
+
+public static boolean ValidarPreco(String preco)
+{
+    preco = preco.replaceAll("^[0-9,.]*$","");
+    return preco.matches("^[0-9,.]*$");
+}
 
     private void limparCampos(){
 
         txtNome.setText("");
         txtPreco.setText("");
-        cbControlado.setSelected(false); //**********
+        cbControlado.setSelected(false);
 
     }
 
