@@ -20,8 +20,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea layoutX="179.0" layoutY="219.0" prefHeight="12.0" prefWidth="200.0" />
-      <TextArea layoutX="179.0" layoutY="162.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextArea fx:id="txtPreco" layoutX="179.0" layoutY="219.0" prefHeight="12.0" prefWidth="200.0" />
+      <TextArea fx:id="txtNome" layoutX="179.0" layoutY="162.0" prefHeight="30.0" prefWidth="200.0" />
       <Label layoutX="98.0" layoutY="328.0">
          <font>
             <Font size="14.0" />
@@ -48,7 +48,7 @@
             <Font name="Lucida Sans Unicode" size="14.0" />
          </font>
       </Button>
-      <CheckBox layoutX="167.0" layoutY="308.0" mnemonicParsing="false" text="O PRODUTO É CONTROLADO?">
+      <CheckBox fx:id="cbControlado" layoutX="167.0" layoutY="308.0" mnemonicParsing="false" text="O PRODUTO É CONTROLADO?">
          <font>
             <Font size="14.0" />
          </font>

@@ -10,19 +10,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Alert.AlertType;
 
 public class TelaCadastroProdutoController {
-@FXML private TextArea txtNome;
-@FXML private TextArea txtPreco;
-@FXML private CheckBox cbControlado;
-
-
-private boolean validarCampos2(){
-    boolean ok = false;
-    if(txtNome.getText() != null && txtPreco.getText() != null)
-    {
-        ok = true;
-    }
-    return ok;
-}
+    
+    @FXML private TextArea txtNome;
+    @FXML private TextArea txtPreco;
+    @FXML private CheckBox cbControlado;
 
     private void showError2(Exception exception){
         Alert alert = new Alert(AlertType.ERROR);
@@ -64,6 +55,15 @@ private boolean validarCampos2(){
     public static boolean ValidarNome(String nome){
     nome = nome.replaceAll("[^a-zA-Z]","");
 return nome.matches("[^a-zA-Z]");
+}
+
+private boolean validarCampos2(){
+    boolean ok = false;
+    if(txtNome.getText() != null && txtPreco.getText() != null)
+    {
+        ok = true;
+    }
+    return ok;
 }
 
 public static boolean ValidarPreco(String preco)

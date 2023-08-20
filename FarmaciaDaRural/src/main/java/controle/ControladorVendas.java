@@ -35,28 +35,43 @@ public class ControladorVendas {
         return instance;
     }
 
-    public void realizarVenda(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente) { 
-        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.verificarCpf(vendedor.getCpf())&& repositorioPessoas.verificarCpf(cliente.getCpf())) {
-            Pessoa func = repositorioPessoas.buscarPessoaPorCpf(vendedor.getCpf());
-            if( func instanceof Funcionario ){
+    public void realizarVendaComun(List<ItemVenda> compra, Pessoa vendedor, Pessoa cliente) { 
+        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.verificarCpf(vendedor.getCpf())&& repositorioPessoas.verificarCpf(cliente.getCpf())) 
+        {
+            if( vendedor instanceof Funcionario ){
                 double valorTotal = calcularValorDaCompra(compra); 
-                Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), vendedor.getIdAcessoSistema());
-        
-                if (verificarCompraControlada(compra)) {
-                    return;
-                } else {
-                    for (ItemVenda itemComprado : compra) {
-                        Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
-                        produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
-                        repositorioProdutos.atualizarProduto(produtoNoEstoque);
-                    }
-                        Venda venda = new Venda(vendedor, cliente, compra, comprovante, LocalDateTime.now());
-                        repositorioVendas.adicionarVenda(venda);
-                    } 
+                Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), ((Funcionario) vendedor).getIdAcessoSistema());
+                for (ItemVenda itemComprado : compra) {
+                    Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
+                    produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
+                    repositorioProdutos.atualizarProduto(produtoNoEstoque);
                 }
-            }
+                Venda venda = new Venda( (Funcionario) vendedor, (Cliente) cliente, compra, comprovante, LocalDateTime.now());
+                repositorioVendas.adicionarVenda(venda);
+            } 
         }
-
+    }
+    public void realizarVendaControlada(List<ItemVenda> compra, Pessoa vendedor, Pessoa cliente, String receita) { 
+        if (compra != null &&
+            verificarEstoqueDisponivel(compra) && 
+            repositorioPessoas.verificarCpf(vendedor.getCpf()) &&
+            repositorioPessoas.verificarCpf(cliente.getCpf()) &&
+            verificarCompraControlada(compra))
+        {
+            if( vendedor instanceof Funcionario ){
+                double valorTotal = calcularValorDaCompra(compra); 
+                Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), ((Funcionario) vendedor).getIdAcessoSistema());
+                for (ItemVenda itemComprado : compra) {
+                    Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
+                    produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
+                    repositorioProdutos.atualizarProduto(produtoNoEstoque);
+                }
+                Venda venda = new Venda( (Funcionario) vendedor, (Cliente) cliente, compra, comprovante, LocalDateTime.now());
+                repositorioVendas.adicionarVenda(venda);
+            } 
+        }
+    }
+        
     private double calcularValorDaCompra(List<ItemVenda> compra) {
         double valorTotal = 0.0;
         for (ItemVenda pr : compra) {
