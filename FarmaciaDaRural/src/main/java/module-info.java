@@ -6,6 +6,7 @@ module com.ufrpe.farmaciadarural {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
+    opens models to javafx.base;
     opens GUI to javafx.fxml;
     exports GUI;
 }

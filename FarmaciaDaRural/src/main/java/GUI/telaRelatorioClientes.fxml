@@ -9,18 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TelaEstoqueController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TelaRelatorioClientesController">
    <children>
       <VBox layoutX="164.0" layoutY="1.0" prefHeight="400.0" prefWidth="432.0">
          <children>
             <TableView fx:id="tableView" prefHeight="402.0" prefWidth="432.0">
                <columns>
                   <TableColumn fx:id="colNome" prefWidth="141.5999755859375" text="Nome" />
-                  <TableColumn fx:id="colQuantidade" prefWidth="104.0" text="Quantidade" />
-                  <TableColumn fx:id="colPreco" prefWidth="87.199951171875" text="Preço" />
-                  <TableColumn fx:id="colTarja" prefWidth="98.4000244140625" text="Tarja" />
-               </columns>
-            </TableView>
+                  <TableColumn fx:id="colCpf" prefWidth="204.7999267578125" text="Cpf" />
+                  <TableColumn fx:id="colPremium" prefWidth="84.800048828125" text="Premium" />
+               </columns></TableView>
          </children>
       </VBox>
       <Label layoutX="14.0" layoutY="14.0" text="FILTRAR POR" textFill="#806d6b">
@@ -28,7 +26,7 @@
             <Font name="Times New Roman Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#listarProdutos" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="TODOS" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#listarClientes" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="TODOS" textFill="#eeccc9">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
@@ -36,7 +34,7 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
-      <Button layoutX="14.0" layoutY="83.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="SAIR" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="88.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="SAIR" textFill="#eeccc9">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>

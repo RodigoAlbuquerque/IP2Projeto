@@ -41,7 +41,7 @@ public class TelaCadastroProdutoController {
     @FXML public void botaoCadastrar()
     {
         if(validarCampos2()) {
-            Produto produto1 = new Produto(txtNome.getText(),Double.parseDouble(txtPreco.getText()),0,cbControlado.isSelected());
+            Produto produto1 = new Produto(txtNome.getText(),Double.parseDouble(txtPreco.getText()),5,cbControlado.isSelected());
             try {
                 ControladorProdutos.getInstanceControladorProdutos().cadastrarProduto(produto1);
                 showMessage("Produto cadastrado com sucesso", "Tudo certo");
@@ -63,9 +63,9 @@ public class TelaCadastroProdutoController {
     }
 
 
-    public static boolean ValidarNome(String nome){
+public static boolean ValidarNome(String nome){
     nome = nome.replaceAll("[^a-zA-Z]","");
-return nome.matches("[^a-zA-Z]");
+    return nome.matches("[^a-zA-Z]");
 }
 
 

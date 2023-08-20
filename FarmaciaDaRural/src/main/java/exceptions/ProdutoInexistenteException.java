@@ -1,16 +1,15 @@
 package exceptions;
 
-import models.Produto;
 
 public class ProdutoInexistenteException extends Exception{
-    private Produto produto;
+    private String produtoNome;
 
-    public ProdutoInexistenteException(Produto produto){
+    public ProdutoInexistenteException(String nome){
      super("Produto não existe");
 
-        if (produto == null){
+        if (nome == null){
             throw new IllegalArgumentException();
         }
-        this.produto = produto;
+        this.produtoNome = nome;
     }
 }

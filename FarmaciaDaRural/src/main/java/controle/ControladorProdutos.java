@@ -24,11 +24,12 @@ public class ControladorProdutos {
 
     public void cadastrarProduto(Produto produto)throws ProdutoJaExisteException {
         if(!repositorioProdutos.verificarProdutoExistente(produto.getNome())
+
         ){
-            repositorioProdutos.cadastrarProduto(produto);
+           throw new ProdutoJaExisteException(produto);
         }
         else{
-            throw new ProdutoJaExisteException(produto);
+            repositorioProdutos.cadastrarProduto(produto);
         }
     }
 
@@ -39,7 +40,9 @@ public class ControladorProdutos {
             }
         }
     }
-
+    public boolean verificarProdutoExistente(String nome){
+        return repositorioProdutos.verificarProdutoExistente(nome);
+    }
     public List<Produto> listarProdutos(){
         return repositorioProdutos.listarProdutos();
     }
@@ -50,5 +53,7 @@ public class ControladorProdutos {
     public Produto buscarProduto(String nome) {
         return repositorioProdutos.buscarProduto(nome);
     }
+    
+
 
 }
