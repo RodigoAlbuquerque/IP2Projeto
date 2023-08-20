@@ -25,11 +25,12 @@ public class ControladorProdutos {
     public void cadastrarProduto(Produto produto)throws ProdutoJaExisteException {
         if( produto.getNome()!=null
                 && produto.getPreco()!=null
-                && produto.getQuantidade() !=0
         ){
             repositorioProdutos.cadastrarProduto(produto);
         }
-        else{throw new ProdutoJaExisteException(produto);}
+        else{
+            throw new ProdutoJaExisteException(produto);
+        }
     }
 
     public void descadastrarProduto(String nome){
