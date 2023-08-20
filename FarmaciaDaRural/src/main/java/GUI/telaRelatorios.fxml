@@ -1,16 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TelaRelatoriosController">
    <children>
-      <Label layoutX="133.0" layoutY="175.0" text="TELA DE RELATORIOS" textFill="#806d6b">
+      <Label layoutX="133.0" layoutY="43.0" text="O que deseja verificar?" textFill="#806d6b">
          <font>
             <Font name="Times New Roman Bold Italic" size="35.0" />
          </font>
       </Label>
+      <Button layoutX="217.0" layoutY="121.0" mnemonicParsing="false" onAction="#mudarTelaParaRelatorioClientes" prefHeight="33.0" prefWidth="165.0" style="-fx-background-color: #804742;" text="CLIENTES" textFill="#eeccc9">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
+      <Button layoutX="217.0" layoutY="184.0" mnemonicParsing="false" onAction="#mudarTelaParaRelatorioFuncionarios" style="-fx-background-color: #804742;" text="FUNCIONARIOS" textFill="#eeccc9">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
+      <Button layoutX="217.0" layoutY="247.0" mnemonicParsing="false" onAction="#mudarTelaParaRelatorioVendas" prefHeight="33.0" prefWidth="165.0" style="-fx-background-color: #804742;" text="VENDAS" textFill="#eeccc9">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
+      <Button layoutX="217.0" layoutY="310.0" mnemonicParsing="false" onAction="#voltar" prefHeight="33.0" prefWidth="165.0" style="-fx-background-color: #804742;" text="VOLTAR" textFill="#eeccc9">
+         <font>
+            <Font name="Times New Roman Bold" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
    </children>
 </Pane>

@@ -10,6 +10,7 @@ public class HelloApplication extends Application {
         ScreenManager controladorTelas = ScreenManager.getInstance();
         controladorTelas.changeScreen(0);
         controladorTelas.getPrimaryStage().show();
+        controladorTelas.getPrimaryStage().setResizable(false);
     }
 
     public static void main(String[] args) {

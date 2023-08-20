@@ -36,7 +36,7 @@ public class ControladorVendas {
     }
 
     public void realizarVenda(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente) { 
-        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.existePessoa(vendedor.getCpf())&& repositorioPessoas.existePessoa(cliente.getCpf())) {
+        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.verificarCpf(vendedor.getCpf())&& repositorioPessoas.verificarCpf(cliente.getCpf())) {
             Pessoa func = repositorioPessoas.buscarPessoaPorCpf(vendedor.getCpf());
             if( func instanceof Funcionario ){
                 double valorTotal = calcularValorDaCompra(compra); 
