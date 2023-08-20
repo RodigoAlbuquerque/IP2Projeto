@@ -45,7 +45,15 @@ public class RepositorioPessoas implements IRepositorioPessoas {
         }
         return false;
     }
-
+    @Override 
+    public Funcionario buscarFuncPorId(Double idAcesso){
+        for (Pessoa pessoa : pessoas){
+            if (pessoa instanceof Funcionario && ((Funcionario)pessoa).getIdAcessoSistema() == idAcesso){
+                return (Funcionario)pessoa;
+            }
+        }
+        return null;
+}
     @Override
     public void removerPessoa(String cpf){
         Pessoa pessoa = buscarPessoaPorCpf(cpf);

@@ -59,7 +59,15 @@ public class ControladorPessoas {
     public List<Pessoa> listarPessoas(){
         return repositorioPessoas.listarPessoas();
     }
-
+    public Funcionario buscarFuncPorId(Double id){
+        return repositorioPessoas.buscarFuncPorId(id);
+    }
+    public Cliente buscarPessoaPorCpf(String cpf){
+       if(repositorioPessoas.buscarPessoaPorCpf(cpf) instanceof Cliente){
+        return (Cliente)repositorioPessoas.buscarPessoaPorCpf(cpf);
+       }
+       return null;
+    }
     public List<Cliente> listarClientesQueMaisCompram(){
         List<Venda> todasAsVendas = repositorioVendas.listarVendas();
         List<Pessoa> todasAsPessoas = listarPessoas();

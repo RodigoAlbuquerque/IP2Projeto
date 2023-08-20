@@ -9,16 +9,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TelaEstoqueController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EECCC9;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.TelaRelatorioFuncionariosController">
    <children>
       <VBox layoutX="164.0" layoutY="1.0" prefHeight="400.0" prefWidth="432.0">
          <children>
             <TableView fx:id="tableView" prefHeight="402.0" prefWidth="432.0">
                <columns>
                   <TableColumn fx:id="colNome" prefWidth="141.5999755859375" text="Nome" />
-                  <TableColumn fx:id="colQuantidade" prefWidth="104.0" text="Quantidade" />
-                  <TableColumn fx:id="colPreco" prefWidth="87.199951171875" text="Preço" />
-                  <TableColumn fx:id="colTarja" prefWidth="98.4000244140625" text="Tarja" />
+                  <TableColumn fx:id="colCpf" prefWidth="147.20001220703125" text="CPF" />
+                  <TableColumn fx:id="colIdAcesso" prefWidth="143.20001220703125" text="ID Acesso" />
                </columns>
             </TableView>
          </children>
@@ -28,7 +27,7 @@
             <Font name="Times New Roman Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#listarProdutos" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="TODOS" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#listarFuncionarios" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="TODOS" textFill="#eeccc9">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
