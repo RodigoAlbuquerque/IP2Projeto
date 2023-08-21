@@ -26,15 +26,14 @@
 * ** REQ3 ** - O sistema deve ser capaz de armazenar valores que representem as vendas da farmácia;
 * ** REQ4 ** - O sistema deve ser capaz de cadastrar e remover Produtos verificando se o produto a ser cadastrado ou removido já está cadastrado no sistema;
 * ** REQ5 ** - O sistema deve ser capaz de cadastrar e remover Funcionários e Clientes verificando se os mesmos já não estão cadastrados;
-* ** REQ6 ** -  O sistema deve ser capaz de exibir relatórios de vendas, mostrando informações como produtos em baixo estoque, vendas por data, etc;
-* ** REQ7 ** - O metodo para listar vendas por datas deve receber dois parâmetros do tipo LocalDateTime. um representando a data inicial e outro a data final e retornar um ArrayList com todas as vendas que possuem data entre o periodo inicial/final passados como parâmetros armazenadas no repositorio de vendas;
-* ** REQ8 ** - O sistema deve implementar um mecanismo listar: Clientes cadastrados, Funcionarios da farmácia, 3 funcionários que mais venderam, 3 clientes que mais compraram;
-* ** REQ9 ** -  Deve haver uma metodo para venda de produtos que recebe como parâmetros um funcionário, um cliente e um ArrayList contendo os produtos a serem vendidos. Este método deve verificar se o funcionario e o cliente passados como parâmetro estão cadastrados e caso estejam, calcular o valor da venda e instanciar um objeto do tipo Venda posteriormente armazenando-o em um Repositório de vendas;
-* ** REQ10 ** - Garantir que o estoque possa ser abastecido e que o estoque de produtos nunca fique negativo, verificando a disponibilidade de produtos antes de realizar uma venda;
-* ** REQ11 ** - O sistema deve calcular o valor total da compra do cliente e gerar um comprovante de compra;
-* ** REQ12 ** - Deverá haver um controlador (ou gerenciador) responsável por intermediar as interações entre a interface gráfica, os repositórios de funcionários, clientes e produtos, e as classes de negócio (Funcionário, Cliente, Produto). O controlador será responsável por processar as solicitações do usuário, atualizar os repositórios conforme necessário e fornecer informações para a interface gráfica exibir ao usuário;
-* ** REQ13 ** - A interface gráfica deve ser implementada utilizando uma biblioteca gráfica apropriada em Java, como Swing ou JavaFX. Ela deverá fornecer uma experiência intuitiva para os usuários interagirem com o sistema de gerenciamento de farmácia. A interface gráfica deve permitir a navegação entre as diferentes funcionalidades do sistema, como cadastro de funcionários, cadastro de clientes, cadastro de produtos, venda de produtos, relatórios, etc;
-* ** REQ14 ** - A interface gráfica deve fornecer mensagens claras e informativas para orientar os usuários em caso de erros ou ações bem-sucedidas. Por exemplo, em casos de tentativa de venda de um produto indisponível no estoque ou sucesso no cadastro de um novo funcionário;
+* ** REQ6 ** -  O sistema deve ser capaz de exibir relatórios de vendas.
+* ** REQ7 ** - O sistema deve implementar um mecanismo listar: Clientes cadastrados e Funcionarios da farmácia.
+* ** REQ8 ** - O sistema deve ser capaz de vender produtos cadastrados e armazenar informações sobre cada venda.
+* ** REQ9 ** - Garantir que o estoque possa ser abastecido e que o estoque de produtos nunca fique negativo, verificando a disponibilidade de produtos antes de realizar uma venda;
+* ** REQ10 ** - O sistema deve calcular o valor total da compra do cliente e gerar um comprovante de compra;
+* ** REQ11 ** - Deverá haver um controlador (ou gerenciador) responsável por intermediar as interações entre a interface gráfica, os repositórios de funcionários, clientes e produtos, e as classes de negócio (Funcionário, Cliente, Produto). O controlador será responsável por processar as solicitações do usuário, atualizar os repositórios conforme necessário e fornecer informações para a interface gráfica exibir ao usuário;
+* ** REQ12 ** - A interface gráfica deve ser implementada utilizando uma biblioteca gráfica apropriada em Java, como Swing ou JavaFX. Ela deverá fornecer uma experiência intuitiva para os usuários interagirem com o sistema de gerenciamento de farmácia. A interface gráfica deve permitir a navegação entre as diferentes funcionalidades do sistema, como cadastro de funcionários, cadastro de clientes, cadastro de produtos, venda de produtos, relatórios, etc;
+* ** REQ13 ** - A interface gráfica deve fornecer mensagens claras e informativas para orientar os usuários em caso de erros ou ações bem-sucedidas. Por exemplo, em casos de tentativa de venda de um produto indisponível no estoque ou sucesso no cadastro de um novo funcionário;
 
 ## Cronograma de MVPs com seleção de requisitos
 
