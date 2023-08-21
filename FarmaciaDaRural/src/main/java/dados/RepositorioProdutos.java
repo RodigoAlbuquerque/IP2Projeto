@@ -31,7 +31,7 @@ public class RepositorioProdutos implements IRepositorioProdutos {
     @Override
     public boolean verificarProdutoExistente(String nome){
         for(Produto pr: produtos){
-            if(pr.getNome() == nome){
+            if(pr.getNome().equals(nome)){
                 return true;
             }
         }

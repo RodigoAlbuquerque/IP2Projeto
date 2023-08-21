@@ -1,6 +1,7 @@
 package GUI;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import controle.ControladorPessoas;
@@ -8,15 +9,11 @@ import controle.ControladorProdutos;
 import controle.ControladorVendas;
 import exceptions.CamposInvalidosException;
 import exceptions.ProdutoInexistenteException;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Cliente;
@@ -32,7 +29,7 @@ public class TelaVendasController {
   @FXML private TableView<ItemVenda> table;
 
 
-  private List<ItemVenda> carrinho;
+  private List<ItemVenda> carrinho = new ArrayList<>();
   private String imageURL;
 
   @FXML
@@ -42,6 +39,8 @@ public class TelaVendasController {
         if(ControladorProdutos.getInstanceControladorProdutos().verificarProdutoExistente(txtNomeProd.getText())){
           ItemVenda compra = new ItemVenda(Integer.parseInt(txtQnt.getText()), ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNomeProd.getText()));
           carrinho.add(compra);
+          limparCampos();
+          showMessage("Produto adicionado com sucesso!", "Tudo certo!");
         }else{
           throw new ProdutoInexistenteException(txtNomeProd.getText());
         }
@@ -64,7 +63,8 @@ public class TelaVendasController {
             Funcionario funcionario = ControladorPessoas.getInstanceControladorCadastro().buscarFuncPorId(Double.parseDouble(txtIdAcesso.getText()));
             Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
             ControladorVendas.getInstanceControladorVendas().realizarVendaComun(carrinho,funcionario,cliente);
-            esvaziarCarrinho(carrinho);
+            limparCampos();
+            esvaziarCarrinho();
             showMessage("Produto Comprado com sucesso", "Tudo certo");
           }
           catch(CamposInvalidosException e){
@@ -83,7 +83,7 @@ public class TelaVendasController {
             Funcionario funcionario = ControladorPessoas.getInstanceControladorCadastro().buscarFuncPorId(Double.parseDouble(txtIdAcesso.getText()));
             Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
             ControladorVendas.getInstanceControladorVendas().realizarVendaControlada(carrinho,funcionario,cliente,imageURL);
-            esvaziarCarrinho(carrinho);
+            esvaziarCarrinho();
             showMessage("Produto Comprado com sucesso", "Tudo certo");
           }
           catch(CamposInvalidosException e){
@@ -93,7 +93,16 @@ public class TelaVendasController {
         showMessage("Campos invalidos tente novaemente", "ALGO ESTÁ ERRADO");
       }
     }
-  
+  @FXML
+  public void voltar(){
+    ScreenManager.getInstance().changeScreen(0);
+  }
+  private void limparCampos(){
+    txtCpf.setText("");
+    txtNomeProd.setText("");
+    txtIdAcesso.setText("");
+    txtQnt.setText("");
+  }
 
   private void showError(Exception exception){
      Alert alert = new Alert(AlertType.ERROR);
@@ -120,10 +129,8 @@ public class TelaVendasController {
     }
     
   }
-  private void esvaziarCarrinho(List<ItemVenda> cart){
-    while(cart !=null){
-      cart.remove(0);
-    }
+  private void esvaziarCarrinho(){
+    carrinho = new ArrayList<>();
   }
 
   @FXML

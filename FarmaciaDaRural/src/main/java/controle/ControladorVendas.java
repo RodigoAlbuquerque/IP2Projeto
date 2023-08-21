@@ -17,7 +17,6 @@ import models.Cliente;
 import models.Comprovante;
 import models.Funcionario;
 import models.ItemVenda;
-import models.Pessoa;
 
 public class ControladorVendas {
     private IRepositorioProdutos repositorioProdutos;
@@ -39,7 +38,10 @@ public class ControladorVendas {
     }
 
     public void realizarVendaComun(List<ItemVenda> compra, Funcionario vendedor,Cliente cliente) throws CamposInvalidosException{ 
-        if (compra != null && verificarEstoqueDisponivel(compra) && repositorioPessoas.verificarCpf(vendedor.getCpf())&& repositorioPessoas.verificarCpf(cliente.getCpf())) 
+        if (compra != null &&
+            verificarEstoqueDisponivel(compra) &&
+            repositorioPessoas.verificarCpf(vendedor.getCpf()) &&
+            repositorioPessoas.verificarCpf(cliente.getCpf())) 
         {
             double valorTotal = calcularValorDaCompra(compra); 
             Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), ((Funcionario) vendedor).getIdAcessoSistema());
@@ -50,7 +52,8 @@ public class ControladorVendas {
             }
             Venda venda = new Venda( (Funcionario) vendedor, (Cliente) cliente, compra, comprovante, LocalDateTime.now());
             repositorioVendas.adicionarVenda(venda);   
-        }else{
+        }
+        else{
             throw new CamposInvalidosException("Preencha os campos corretamente!");
         }
     }
