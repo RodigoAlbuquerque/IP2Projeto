@@ -82,11 +82,11 @@ public class ControladorPessoas {
         List<Pessoa> clientes = listarPessoasPorTipo(Cliente.class);
         Collections.sort(clientes, Comparator.comparingInt(vendasPorCliente::get).reversed());
         List<Cliente> clientesQueMaisCompram = new ArrayList<>();
-        clientesQueMaisCompram.add((Cliente) clientes.get(0));
-        clientesQueMaisCompram.add((Cliente)clientes.get(1));
-        clientesQueMaisCompram.add((Cliente)clientes.get(2));
-        return clientesQueMaisCompram;
+        for(Pessoa cliente: clientes){
+            clientesQueMaisCompram.add((Cliente)cliente);
+        }
 
+        return clientesQueMaisCompram;
     } 
 
     public List<Funcionario> listarFuncionariosQueMaisVendem(){
@@ -103,9 +103,10 @@ public class ControladorPessoas {
         List<Pessoa> funcionarios = listarPessoasPorTipo(Funcionario.class);
         Collections.sort(funcionarios, Comparator.comparingInt(vendasPorCliente::get).reversed());
         List<Funcionario> funcionariosQueMaisVendem = new ArrayList<>();
-        funcionariosQueMaisVendem.add((Funcionario)funcionarios.get(0));
-        funcionariosQueMaisVendem.add((Funcionario)funcionarios.get(1));
-        funcionariosQueMaisVendem.add((Funcionario)funcionarios.get(2));
+        for(Pessoa func: funcionarios){
+            funcionariosQueMaisVendem.add((Funcionario)func);
+        }
+
         return funcionariosQueMaisVendem;
 
     } 

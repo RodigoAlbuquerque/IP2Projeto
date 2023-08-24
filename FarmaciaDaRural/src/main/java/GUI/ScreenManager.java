@@ -34,6 +34,8 @@ public class ScreenManager {
 
     private Scene sceneRelatorioFuncionarios;
 
+    private Scene sceneRelatorioVendas;
+
     private ScreenManager(){
         this.initialize();
     }
@@ -90,6 +92,10 @@ public class ScreenManager {
             Parent parentTelaRelatorioFuncionarios = telaRelatorioFuncionarios.load();
             sceneRelatorioFuncionarios = new Scene(parentTelaRelatorioFuncionarios, 600 , 400);
 
+            FXMLLoader telaRelatorioVendas = new FXMLLoader(getClass().getResource("telaRelatorioVendas.fxml"));
+            Parent parentTelaRelatorioVendas = telaRelatorioVendas.load();
+            sceneRelatorioVendas = new Scene(parentTelaRelatorioVendas, 600 , 400);
+
         }
         catch(IOException e ){
             e.printStackTrace();
@@ -127,6 +133,9 @@ public class ScreenManager {
                 break;
             case 9:
                 primaryStage.setScene(sceneRelatorioFuncionarios);
+                break;
+            case 10:
+                primaryStage.setScene(sceneRelatorioVendas);
                 break;
 
             default:

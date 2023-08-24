@@ -1,6 +1,6 @@
 package dados;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import models.Venda;
@@ -12,7 +12,6 @@ public interface IRepositorioVendas {
     void removerVenda(Venda venda);
 
     List<Venda> listarVendas();
-
-    List<Venda> listarVendasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal);
-
+    
+    List<Venda> listarVendasPorData(LocalDate data);
 }

@@ -1,14 +1,14 @@
 package models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class VendaTarja extends Venda {
 
     private String receita;
 
-    public VendaTarja(Funcionario funcionario, Cliente cliente, List<ItemVenda> produtos,Comprovante comp, LocalDateTime data,String receita) {
-        super(funcionario, cliente, produtos, comp, data);
+    public VendaTarja(Funcionario funcionario, Cliente cliente, List<ItemVenda> produtos, LocalDate data,String receita) {
+        super(funcionario, cliente, produtos, data);
         this.receita = receita;
     }
 

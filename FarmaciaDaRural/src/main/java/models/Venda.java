@@ -1,29 +1,19 @@
 package models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Venda {
     private Funcionario funcionario;
     private Cliente cliente;
     private List<ItemVenda> compra;
-    private Comprovante comprovante;
-    private LocalDateTime data;
+    private LocalDate data;
 
-    public Venda(Funcionario funcionario, Cliente cliente,List<ItemVenda> produtos,Comprovante comp, LocalDateTime data) {
+    public Venda(Funcionario funcionario, Cliente cliente,List<ItemVenda> produtos, LocalDate data) {
         this.funcionario = funcionario;
         this.cliente = cliente;
         this.data = data;
-        this.comprovante = comp;
         this.compra = produtos;
-    }
-
-    public Comprovante getComprovante() {
-        return comprovante;
-    }
-
-    public void setComprovante(Comprovante comprovante) {
-        this.comprovante = comprovante;
     }
 
     public Funcionario getFuncionario() {
@@ -52,11 +42,11 @@ public class Venda {
 
 
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
     
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
     

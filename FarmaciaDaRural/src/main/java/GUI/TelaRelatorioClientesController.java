@@ -61,7 +61,11 @@ public class TelaRelatorioClientesController {
     }
     @FXML
     public void listarClientesQueMaisCompram(){
+        ObservableList<Cliente> listaDeClientes = FXCollections.observableArrayList();
         List<Cliente> listaDePessoas = ControladorPessoas.getInstanceControladorCadastro().listarClientesQueMaisCompram();
-        atualizarClientesList((ObservableList<Cliente>) listaDePessoas);
+        for(Cliente clie: listaDePessoas){
+            listaDeClientes.add(clie);
+        }
+        atualizarClientesList(listaDeClientes);
     }
 }

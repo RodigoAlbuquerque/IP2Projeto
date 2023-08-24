@@ -23,12 +23,12 @@
             </TableView>
          </children>
       </VBox>
-      <Label layoutX="14.0" layoutY="14.0" text="FILTRAR POR" textFill="#806d6b">
+      <Label layoutX="32.0" layoutY="14.0" text="ESTOQUE" textFill="#806d6b">
          <font>
             <Font name="Times New Roman Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#listarProdutos" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="TODOS" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#listarProdutos" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="ATUALIZAR" textFill="#eeccc9">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
@@ -36,7 +36,7 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
-      <Button layoutX="14.0" layoutY="83.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="SAIR" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="102.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="SAIR" textFill="#eeccc9">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>

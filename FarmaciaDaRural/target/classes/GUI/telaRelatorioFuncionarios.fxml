@@ -22,12 +22,12 @@
             </TableView>
          </children>
       </VBox>
-      <Label layoutX="14.0" layoutY="14.0" text="FILTRAR POR" textFill="#806d6b">
+      <Label layoutX="14.0" layoutY="14.0" text="FUNCIONARIOS" textFill="#806d6b">
          <font>
             <Font name="Times New Roman Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#listarFuncionarios" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="TODOS" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#listarFuncionarios" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="ATUALIZAR" textFill="#eeccc9">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>

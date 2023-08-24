@@ -4,6 +4,7 @@ import models.Produto;
 import models.Venda;
 import models.VendaTarja;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import dados.IRepositorioPessoas;
@@ -14,7 +15,6 @@ import dados.RepositorioProdutos;
 import dados.RepositorioVendas;
 import exceptions.CamposInvalidosException;
 import models.Cliente;
-import models.Comprovante;
 import models.Funcionario;
 import models.ItemVenda;
 
@@ -43,14 +43,12 @@ public class ControladorVendas {
             repositorioPessoas.verificarCpf(vendedor.getCpf()) &&
             repositorioPessoas.verificarCpf(cliente.getCpf())) 
         {
-            double valorTotal = calcularValorDaCompra(compra); 
-            Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), ((Funcionario) vendedor).getIdAcessoSistema());
             for (ItemVenda itemComprado : compra) {
                 Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
                 produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
                 repositorioProdutos.atualizarProduto(produtoNoEstoque);
             }
-            Venda venda = new Venda( (Funcionario) vendedor, (Cliente) cliente, compra, comprovante, LocalDateTime.now());
+            Venda venda = new Venda( (Funcionario) vendedor, (Cliente) cliente, compra, LocalDate.now());
             repositorioVendas.adicionarVenda(venda);   
         }
         else{
@@ -65,21 +63,19 @@ public class ControladorVendas {
             verificarCompraControlada(compra) &&
             receita != null)
         {
-            double valorTotal = calcularValorDaCompra(compra); 
-            Comprovante comprovante = new Comprovante(compra, valorTotal, cliente.getCpf(), ((Funcionario) vendedor).getIdAcessoSistema());
             for (ItemVenda itemComprado : compra) {
                 Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
                 produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
                 repositorioProdutos.atualizarProduto(produtoNoEstoque);
             }
-            Venda venda = new VendaTarja( vendedor, cliente, compra, comprovante, LocalDateTime.now(), receita);
+            Venda venda = new VendaTarja( vendedor, cliente, compra, LocalDate.now(), receita);
             repositorioVendas.adicionarVenda(venda);
         }else{
             throw new CamposInvalidosException("Preencha os campos corretamente!");
         }
     }
         
-    private double calcularValorDaCompra(List<ItemVenda> compra) {
+    public double calcularValorDaCompra(List<ItemVenda> compra) {
         double valorTotal = 0.0;
         for (ItemVenda pr : compra) {
             valorTotal += pr.getProduto().getPreco() * pr.getQuantidade();
@@ -149,20 +145,13 @@ public class ControladorVendas {
         }
     }
 
-    public List<Produto> listarProdutosEmBaixoEstoque(){
-        return repositorioProdutos.listarProdutosEmBaixoEstoque();
-    }
-
-    public List<Produto> listarEstoque(){
-        return repositorioProdutos.listarProdutos();
-    }
-
     public List<Venda> listarVendas(){
         return repositorioVendas.listarVendas();
     }
 
-    public List<Venda> listarVendasPorPeriodos(LocalDateTime inic, LocalDateTime fim){
-        return repositorioVendas.listarVendasPorPeriodo(inic, inic);
+    public List<Venda> listarVendasPorData(LocalDate data){
+        return repositorioVendas.listarVendasPorData(data);
     }
+
 }
 

@@ -1,5 +1,5 @@
 package dados;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import models.Venda;
@@ -33,14 +33,15 @@ public class RepositorioVendas implements IRepositorioVendas {
     public List<Venda> listarVendas() {
         return vendas;
     }
-    @Override
-    public List<Venda> listarVendasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal) {
-        List<Venda> vendasNoPeriodo = new ArrayList<>();
 
-        for (Venda venda : vendas) {
-            LocalDateTime dataVenda = venda.getData();
-            if (dataVenda.getDayOfYear() > dataInicial.getDayOfYear() && dataVenda.getDayOfYear() < dataFinal.getDayOfYear()) {
-                vendasNoPeriodo.add(venda);
+    @Override 
+    public List<Venda> listarVendasPorData(LocalDate data){
+        List<Venda> vendasNoPeriodo = new ArrayList<>();
+        for(Venda ven: vendas){
+            if( ven.getData().getYear() == data.getYear() &&
+                ven.getData().getMonth()  == data.getMonth())
+            {
+                vendasNoPeriodo.add(ven);
             }
         }
         return vendasNoPeriodo;
