@@ -37,7 +37,7 @@ public class ControladorVendas {
         return instance;
     }
 
-    public void realizarVendaComun(List<ItemVenda> compra, Funcionario vendedor,Cliente cliente) throws CamposInvalidosException{ 
+    public void realizarVendaComun(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente) throws CamposInvalidosException {
         if (compra != null &&
             verificarEstoqueDisponivel(compra) &&
             repositorioPessoas.verificarCpf(vendedor.getCpf()) &&
@@ -48,13 +48,16 @@ public class ControladorVendas {
                 produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
                 repositorioProdutos.atualizarProduto(produtoNoEstoque);
             }
-            Venda venda = new Venda( (Funcionario) vendedor, (Cliente) cliente, compra, LocalDate.now());
-            repositorioVendas.adicionarVenda(venda);   
-        }
-        else{
+            Venda venda = new Venda((Funcionario) vendedor, (Cliente) cliente, compra, LocalDate.now());
+            repositorioVendas.adicionarVenda(venda);
+            
+            // Atualizar o número de compras do cliente
+            cliente.incrementarNumeroCompras();
+        } else {
             throw new CamposInvalidosException("Preencha os campos corretamente!");
         }
     }
+    
     public void realizarVendaControlada(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente, String receita) throws CamposInvalidosException { 
         if (compra != null &&
             verificarEstoqueDisponivel(compra) && 
@@ -68,9 +71,12 @@ public class ControladorVendas {
                 produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
                 repositorioProdutos.atualizarProduto(produtoNoEstoque);
             }
-            Venda venda = new VendaTarja( vendedor, cliente, compra, LocalDate.now(), receita);
+            Venda venda = new VendaTarja(vendedor, cliente, compra, LocalDate.now(), receita);
             repositorioVendas.adicionarVenda(venda);
-        }else{
+            
+            // Atualizar o número de compras do cliente
+            cliente.incrementarNumeroCompras();
+        } else {
             throw new CamposInvalidosException("Preencha os campos corretamente!");
         }
     }
@@ -151,6 +157,19 @@ public class ControladorVendas {
 
     public List<Venda> listarVendasPorData(LocalDate data){
         return repositorioVendas.listarVendasPorData(data);
+    }
+
+    public int getNumeroVendas(Funcionario funcionario) {
+        int numVendas = 0;
+        List<Venda> vendas = repositorioVendas.listarVendas();
+        
+        for (Venda venda : vendas) {
+            if (venda.getFuncionario().equals(funcionario)) {
+                numVendas++;
+            }
+        }
+        
+        return numVendas;
     }
 
 }

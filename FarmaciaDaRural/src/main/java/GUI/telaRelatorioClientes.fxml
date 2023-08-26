@@ -18,6 +18,7 @@
                   <TableColumn fx:id="colNome" prefWidth="141.5999755859375" text="Nome" />
                   <TableColumn fx:id="colCpf" prefWidth="204.7999267578125" text="Cpf" />
                   <TableColumn fx:id="colPremium" prefWidth="84.800048828125" text="Premium" />
+                  <TableColumn fx:id="colNumCompras" prefWidth="120.0" text="Nº Compras" />
                </columns></TableView>
          </children>
       </VBox>

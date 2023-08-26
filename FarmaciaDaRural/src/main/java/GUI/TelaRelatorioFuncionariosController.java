@@ -1,7 +1,10 @@
 package GUI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import controle.ControladorPessoas;
+import controle.ControladorVendas;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +13,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Funcionario;
 import models.Pessoa;
+import java.util.Map; 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
 
 public class TelaRelatorioFuncionariosController {
 
@@ -21,6 +29,10 @@ public class TelaRelatorioFuncionariosController {
     private TableColumn<Funcionario, String> colCpf;
     @FXML
     private TableColumn<Funcionario, Double> colIdAcesso;
+    @FXML
+    private TableColumn<Funcionario, Integer> colNumVendas;
+    
+
 
     private ObservableList<Funcionario> funcionarioList = FXCollections.observableArrayList();
 
@@ -33,6 +45,7 @@ public class TelaRelatorioFuncionariosController {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         colIdAcesso.setCellValueFactory(new PropertyValueFactory<>("idAcessoSistema"));
+        colNumVendas.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<Integer>(ControladorVendas.getInstanceControladorVendas().getNumeroVendas(cellData.getValue())));
         // Configurar a TableView para usar a lista de clientes
         tableView.setItems(funcionarioList);         
     }
@@ -53,6 +66,28 @@ public class TelaRelatorioFuncionariosController {
         }
        atualizarFuncionarioList(listaDeClientes);
     }
+    @FXML
+public void listarFuncionariosQueMaisVendem() {
+    ObservableList<Funcionario> listaDeFuncionarios = FXCollections.observableArrayList();
+    List<Pessoa> listaDePessoas = ControladorPessoas.getInstanceControladorCadastro().listarPessoasPorTipo(Funcionario.class);
+    
+    Map<Funcionario, Integer> vendasPorFuncionario = new HashMap<>();
+    for (Pessoa pessoa : listaDePessoas) {
+        if (pessoa instanceof Funcionario) {
+            Funcionario funcionario = (Funcionario) pessoa;
+            int numeroDeVendas = ControladorPessoas.getInstanceControladorCadastro().calcularVendas(funcionario, ControladorVendas.getInstanceControladorVendas().listarVendas());
+            vendasPorFuncionario.put(funcionario, numeroDeVendas);
+        }
+    }
+    
+    List<Funcionario> funcionariosOrdenados = vendasPorFuncionario.entrySet().stream()
+            .sorted((entry1, entry2) -> Integer.compare(entry2.getValue(), entry1.getValue()))
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toList());
+
+    listaDeFuncionarios.addAll(funcionariosOrdenados);
+    atualizarFuncionarioList(listaDeFuncionarios);
+}
 
 }
 

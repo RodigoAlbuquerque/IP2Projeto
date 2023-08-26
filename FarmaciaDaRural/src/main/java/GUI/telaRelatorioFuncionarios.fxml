@@ -18,6 +18,7 @@
                   <TableColumn fx:id="colNome" prefWidth="141.5999755859375" text="Nome" />
                   <TableColumn fx:id="colCpf" prefWidth="147.20001220703125" text="CPF" />
                   <TableColumn fx:id="colIdAcesso" prefWidth="143.20001220703125" text="ID Acesso" />
+                  <TableColumn fx:id="colNumVendas" text="Nº Vendas" />
                </columns>
             </TableView>
          </children>
