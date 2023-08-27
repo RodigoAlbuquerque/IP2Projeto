@@ -2,6 +2,7 @@ package controle;
 
 import dados.IRepositorioProdutos;
 import dados.RepositorioProdutos;
+import exceptions.ProdutoInexistenteException;
 import exceptions.ProdutoJaExisteException;
 import models.Produto;
 
@@ -22,7 +23,7 @@ public class ControladorProdutos {
         return instance;
     }
 
-    public void cadastrarProduto(Produto produto)throws ProdutoJaExisteException {
+    public void cadastrarProduto(Produto produto) throws ProdutoJaExisteException {
         if(repositorioProdutos.verificarProdutoExistente(produto.getNome())
 
         ){
@@ -33,13 +34,15 @@ public class ControladorProdutos {
         }
     }
 
-    public void descadastrarProduto(String nome){
-        if(nome !=null){
-            if(repositorioProdutos.buscarProduto(nome)!=null){
-                repositorioProdutos.descadastrarProduto(repositorioProdutos.buscarProduto(nome));
-            }
+    public void descadastrarProduto(String nome) throws ProdutoInexistenteException{
+        if(repositorioProdutos.buscarProduto(nome)!=null){
+            repositorioProdutos.descadastrarProduto(repositorioProdutos.buscarProduto(nome));
+        }
+        else{
+            throw new ProdutoInexistenteException(nome);
         }
     }
+
     public boolean verificarProdutoExistente(String nome){
         return repositorioProdutos.verificarProdutoExistente(nome);
     }

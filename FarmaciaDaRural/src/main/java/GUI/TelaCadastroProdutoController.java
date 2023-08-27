@@ -15,7 +15,51 @@ public class TelaCadastroProdutoController {
     @FXML private TextArea txtPreco;
     @FXML private CheckBox cbControlado;
 
-    private void showError(Exception exception){
+
+    @FXML public void botaoCadastrar()
+    {
+        if(validarCampos2()) {
+            Produto produto1 = new Produto(txtNome.getText(),Double.parseDouble(txtPreco.getText()),5,cbControlado.isSelected());
+            try {
+                ControladorProdutos.getInstanceControladorProdutos().cadastrarProduto(produto1);
+                showMessage("Produto cadastrado com sucesso", "Tudo certo");
+                limparCampos();
+            }
+            catch (ProdutoJaExisteException p) {
+                showError(p);
+            }
+        }
+        else{
+            showMessage("Valores passados nos campos estão invalidos!\nVerifique se todos os campos estão preenchidos e se sim se foram preenchidos de maneira correta", "Campos inválidos");
+            }
+        }
+
+
+    public void cancelar(){
+        limparCampos();
+        ScreenManager.getInstance().changeScreen(1);
+    }
+
+    public static boolean ValidarNome(String nome){
+        nome = nome.replaceAll("[^a-zA-Z]","");
+        return nome.matches("[^a-zA-Z]");
+    }
+
+    public static boolean ValidarPreco(String preco)
+    {
+        preco = preco.replaceAll("^[0-9,.]*$","");
+        return preco.matches("^[0-9,.]*$");
+    }
+
+    private void limparCampos(){
+
+        txtNome.setText("");
+        txtPreco.setText("");
+        cbControlado.setSelected(false);
+
+    }
+
+    private void showError (Exception exception){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Algo de errado");
         alert.setHeaderText(exception.getMessage());
@@ -38,52 +82,6 @@ public class TelaCadastroProdutoController {
         }
         return ok;
     }
-    @FXML public void botaoCadastrar()
-    {
-        if(validarCampos2()) {
-            Produto produto1 = new Produto(txtNome.getText(),Double.parseDouble(txtPreco.getText()),5,cbControlado.isSelected());
-            try {
-                ControladorProdutos.getInstanceControladorProdutos().cadastrarProduto(produto1);
-                showMessage("Produto cadastrado com sucesso", "Tudo certo");
-                limparCampos();
-            }
-            catch (ProdutoJaExisteException p) {
-
-            }
-        }
-        else{
-                showMessage("Valores passados nos campos estão invalidos!\n Verifique se todos os campos estão preenchidos e se sim se foram preenchidos de maneira correta", "Campos inválidos");
-            }
-        }
-
-
-    public void cancelar(){
-        limparCampos();
-        ScreenManager.getInstance().changeScreen(1);
-    }
-
-
-public static boolean ValidarNome(String nome){
-    nome = nome.replaceAll("[^a-zA-Z]","");
-    return nome.matches("[^a-zA-Z]");
-}
-
-
-
-public static boolean ValidarPreco(String preco)
-{
-    preco = preco.replaceAll("^[0-9,.]*$","");
-    return preco.matches("^[0-9,.]*$");
-}
-
-    private void limparCampos(){
-
-        txtNome.setText("");
-        txtPreco.setText("");
-        cbControlado.setSelected(false);
-
-    }
-
 
 
 }

@@ -3,11 +3,15 @@ package GUI;
 import java.util.List;
 
 import controle.ControladorProdutos;
+import exceptions.ProdutoInexistenteException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Produto;
 
@@ -22,8 +26,10 @@ public class TelaEstoqueController {
     private TableColumn<Produto, Double> colPreco;
     @FXML
     private TableColumn<Produto, Integer> colQuantidade;
-     @FXML
+    @FXML
     private TableColumn<Produto, Boolean> colTarja;
+    @FXML
+    private TextField txtNome;
 
     private ObservableList<Produto> produtoList = FXCollections.observableArrayList();
 
@@ -56,6 +62,37 @@ public class TelaEstoqueController {
             }
         atualizarProdutosList(listaDeProdutos);
     }
-       
+
+    @FXML
+    public void descadastrarProduto(){
+        try{
+            ControladorProdutos.getInstanceControladorProdutos().descadastrarProduto(txtNome.getText());
+            limparCampos();
+            showMessage("PRODUTO REMOVIDO COM SUCESSO", "Tudo Okay");
+        }
+        catch(ProdutoInexistenteException e){
+            limparCampos();
+            showError(e);
+        }
+    }    
+    
+    private void showError(Exception exception){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Algo de errado");
+        alert.setHeaderText(exception.getMessage());
+        alert.show();
     }
+
+    private void showMessage(String text,String title){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(text);
+        alert.show();
+    }
+
+    private void limparCampos(){
+        txtNome.setText("");
+    }
+
+}
 

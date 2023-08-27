@@ -10,7 +10,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.ComprovanteADT;
+import models.ComprovanteDTO;
 import models.ItemVenda;
 import models.Venda;
 
@@ -18,21 +18,21 @@ public class TelaRelatorioVendasController {
 
 
     @FXML
-    private TableView<ComprovanteADT> tableView;
+    private TableView<ComprovanteDTO> tableView;
     @FXML
-    private TableColumn<ComprovanteADT, LocalDate> colData;
+    private TableColumn<ComprovanteDTO, LocalDate> colData;
     @FXML
-    private TableColumn<ComprovanteADT, String> colCpf;
+    private TableColumn<ComprovanteDTO, String> colCpf;
     @FXML
-    private TableColumn<ComprovanteADT, Double> colIdAcesso;
+    private TableColumn<ComprovanteDTO, Double> colIdAcesso;
     @FXML
-    private TableColumn<ComprovanteADT, Double> colValor;
+    private TableColumn<ComprovanteDTO, Double> colValor;
 
     @FXML DatePicker dt;
 
-    private ObservableList<ComprovanteADT> comprovanteList = FXCollections.observableArrayList();
+    private ObservableList<ComprovanteDTO> comprovanteList = FXCollections.observableArrayList();
 
-    public void atualizarVendaList(ObservableList<ComprovanteADT> novaLista) {
+    public void atualizarVendaList(ObservableList<ComprovanteDTO> novaLista) {
         comprovanteList.setAll(novaLista);
     }
 
@@ -53,7 +53,7 @@ public class TelaRelatorioVendasController {
 
     @FXML
     public void listarVendas(){
-        ObservableList<ComprovanteADT> listaDeVendas = FXCollections.observableArrayList();
+        ObservableList<ComprovanteDTO> listaDeVendas = FXCollections.observableArrayList();
         List<Venda> listaVendas = ControladorVendas.getInstanceControladorVendas().listarVendas();
         for (Venda venda : listaVendas) {
                 String cpf = venda.getCliente().getCpf();
@@ -63,7 +63,7 @@ public class TelaRelatorioVendasController {
                 for(ItemVenda compra: venda.getItemVenda()){
                     valorCompra += compra.getProduto().getPreco() * compra.getQuantidade();
                 }
-                ComprovanteADT compra = new ComprovanteADT(valorCompra, cpf, id, dt);
+                ComprovanteDTO compra = new ComprovanteDTO(valorCompra, cpf, id, dt);
                 listaDeVendas.add(compra);
         }
         atualizarVendaList(listaDeVendas);
@@ -72,7 +72,7 @@ public class TelaRelatorioVendasController {
     @FXML
     public void listarPorDatas(){
         List<Venda> vendasNoPeriodo = ControladorVendas.getInstanceControladorVendas().listarVendasPorData(dt.getValue());
-        ObservableList<ComprovanteADT> listarVendasNoPeriodo = FXCollections.observableArrayList();
+        ObservableList<ComprovanteDTO> listarVendasNoPeriodo = FXCollections.observableArrayList();
         for (Venda venda : vendasNoPeriodo) {
                 String cpf = venda.getCliente().getCpf();
                 Double id = venda.getFuncionario().getIdAcessoSistema();
@@ -81,7 +81,7 @@ public class TelaRelatorioVendasController {
                 for(ItemVenda compra: venda.getItemVenda()){
                     valorCompra += compra.getProduto().getPreco() * compra.getQuantidade();
                 }
-                ComprovanteADT compra = new ComprovanteADT(valorCompra, cpf, id, dt);
+                ComprovanteDTO compra = new ComprovanteDTO(valorCompra, cpf, id, dt);
                 listarVendasNoPeriodo.add(compra);
         }
         atualizarVendaList(listarVendasNoPeriodo);

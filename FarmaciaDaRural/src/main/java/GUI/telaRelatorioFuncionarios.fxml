@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -36,7 +37,7 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
-      <Button layoutX="14.0" layoutY="83.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="SAIR" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#voltar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="SAIR" textFill="#eeccc9">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>
@@ -44,5 +45,27 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
+      <Button layoutX="14.0" layoutY="284.0" mnemonicParsing="false" onAction="#descadastrar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="DESCADASTRAR" textFill="#eeccc9">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
+      <Label layoutX="14.0" layoutY="174.0" prefHeight="54.0" prefWidth="124.0" text="CPF DO FUNCIONARIO A SER REMOVIDO" textAlignment="CENTER" textFill="#806d6b" wrapText="true">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#listarFuncionarios" prefHeight="64.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="ORDENAR FUNCIONARIOS POR VENDAS" textAlignment="CENTER" textFill="#eeccc9" wrapText="true">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
+      <TextField fx:id="txtCpfFuncionario" layoutX="14.0" layoutY="236.0" prefHeight="26.0" prefWidth="124.0" />
    </children>
 </Pane>

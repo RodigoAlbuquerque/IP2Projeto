@@ -5,7 +5,6 @@ import models.Venda;
 import models.VendaTarja;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import dados.IRepositorioPessoas;
 import dados.IRepositorioProdutos;

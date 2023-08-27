@@ -2,9 +2,11 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -40,7 +42,7 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
-      <Button layoutX="285.0" layoutY="163.0" mnemonicParsing="false" onAction="#selecionarImagem" prefHeight="25.0" prefWidth="304.0" style="-fx-background-color: #804742;" text="Armazenar Receita" textFill="#eeccc9">
+      <Button layoutX="14.0" layoutY="197.0" mnemonicParsing="false" onAction="#selecionarImagem" prefHeight="25.0" prefWidth="234.0" style="-fx-background-color: #804742;" text="Armazenar Receita" textFill="#eeccc9">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -56,17 +58,18 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
-      <Label layoutX="406.0" layoutY="209.0" text="Carrinho" textFill="#806d6b">
-         <font>
-            <Font name="Times New Roman Bold Italic" size="16.0" />
-         </font>
-      </Label>
-      <VBox layoutX="287.0" layoutY="234.0" prefHeight="166.0" prefWidth="304.0">
+      <VBox layoutX="285.0" layoutY="163.0" prefHeight="166.0" prefWidth="304.0">
          <children>
-            <TableView fx:id="table" prefHeight="166.0" prefWidth="248.0" />
+            <TableView fx:id="table" prefHeight="166.0" prefWidth="248.0">
+               <columns>
+                  <TableColumn fx:id="colNome" prefWidth="108.79998779296875" text="Nome" />
+                  <TableColumn fx:id="colQnt" prefWidth="95.20001220703125" text="Quantidade" />
+                  <TableColumn fx:id="colPreco" prefWidth="100.00006103515625" text="Preço Unitário" />
+               </columns>
+            </TableView>
          </children>
       </VBox>
-      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #804742;" text="Voltar &lt;-" textFill="#eeccc9">
+      <Button layoutX="518.0" layoutY="361.0" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #804742;" text="Voltar &lt;-" textFill="#eeccc9">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -74,5 +77,12 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="286.0" layoutY="336.0" text="VALOR TOTAL: ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="valorTotal" layoutX="380.0" layoutY="336.0" text="0" />
    </children>
 </Pane>

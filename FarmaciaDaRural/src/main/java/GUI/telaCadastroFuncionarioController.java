@@ -59,7 +59,7 @@ public class telaCadastroFuncionarioController {
                 showError(pe);
             }
         }else{
-            showMessage("Valores passados nos campos estão invalidos!\n Verifique se todos os campos estão preenchidos e se sim se foram preenchidos de maneira correta"
+            showMessage("Valores passados nos campos estão invalidos!\nVerifique se todos os campos estão preenchidos e se sim se foram preenchidos de maneira correta"
             ,"Campos invalidos");
         }
     }

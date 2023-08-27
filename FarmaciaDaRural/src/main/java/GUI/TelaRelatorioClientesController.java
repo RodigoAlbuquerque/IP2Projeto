@@ -1,20 +1,19 @@
 package GUI;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import controle.ControladorPessoas;
-import controle.ControladorVendas;
+import exceptions.PessoaInexistenteException;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Cliente;
-import models.Funcionario;
 import models.Pessoa;
 
 
@@ -29,6 +28,8 @@ public class TelaRelatorioClientesController {
     private TableColumn<Cliente, Boolean> colPremium;
     @FXML
     private TableColumn<Cliente, Integer> colNumCompras;
+    @FXML
+    private TextField txtCpfCliente;
 
     private ObservableList<Cliente> clientesList = FXCollections.observableArrayList();
 
@@ -57,6 +58,7 @@ public class TelaRelatorioClientesController {
     public void listarClientesPremiuns(){
         atualizarClientesList((ObservableList<Cliente>) ControladorPessoas.getInstanceControladorCadastro().listarClientesQueMaisCompram());
     }
+
     @FXML
     public void listarClientes(){
         ObservableList<Cliente> listaDeClientes = FXCollections.observableArrayList();
@@ -68,6 +70,7 @@ public class TelaRelatorioClientesController {
         }
        atualizarClientesList(listaDeClientes);
     }
+
     @FXML
     public void listarClientesQueMaisCompram(){
         ObservableList<Cliente> listaDeClientes = FXCollections.observableArrayList();
@@ -78,4 +81,46 @@ public class TelaRelatorioClientesController {
         atualizarClientesList(listaDeClientes);
     }
 
+    @FXML
+    public void descadastrar(){
+        if(validarCampos()){
+            try{
+                ControladorPessoas.getInstanceControladorCadastro().removerPessoa(txtCpfCliente.getText());
+                limparCampos();
+                showMessage("CLIENTE REMOVIDO COM SUCESSO", "Tudo Okay");
+            }
+            catch(PessoaInexistenteException e){
+                limparCampos();
+                showError(e);
+            }
+        }else{
+            showMessage("PREENCHA OS CAMPOS CORRETAMENTE", "Campos Invalidos");
+        }
+    }
+
+    private void showError(Exception exception){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Algo de errado");
+        alert.setHeaderText(exception.getMessage());
+        alert.show();
+    }
+
+    private void showMessage(String text,String title){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(text);
+        alert.show();
+    }
+
+    private Boolean validarCampos(){
+        if(txtCpfCliente.getText().equals(null) || txtCpfCliente.getText().equals("")){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    private void limparCampos(){
+        txtCpfCliente.setText("");
+    }
 }

@@ -15,6 +15,7 @@ import dados.IRepositorioPessoas;
 import dados.IRepositorioVendas;
 import dados.RepositorioPessoas;
 import dados.RepositorioVendas;
+import exceptions.PessoaInexistenteException;
 import exceptions.PessoaJaExisteException;
 
 
@@ -39,16 +40,18 @@ public class ControladorPessoas {
         if(repositorioPessoas.verificarCpf(pessoa.getCpf()) ||
            pessoa instanceof Funcionario && repositorioPessoas.verificarIdAcesso(((Funcionario)pessoa).getIdAcessoSistema())             
         ){
-            throw new PessoaJaExisteException(pessoa);    
+            throw new PessoaJaExisteException(pessoa.getCpf());    
         }
         else{
             repositorioPessoas.cadastrarPessoa(pessoa);
         }
     }
 
-    public void removerPessoa(String cpf){
-        if(cpf != null){
+    public void removerPessoa(String cpf) throws PessoaInexistenteException{
+        if(repositorioPessoas.verificarCpf(cpf)){
             repositorioPessoas.removerPessoa(cpf);
+        }else{
+            throw new PessoaInexistenteException(cpf);
         }
     }
 

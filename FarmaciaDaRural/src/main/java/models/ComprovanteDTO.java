@@ -2,14 +2,14 @@ package models;
 
 import java.time.LocalDate;
 
-public class ComprovanteADT {
+public class ComprovanteDTO {
     
     private double valorDaCompra;
     private String cpf;
     private Double idAcessFuncionario;
     private LocalDate data;
 
-    public ComprovanteADT(double valorDaCompra,String cpf, Double idAcess, LocalDate dt) {
+    public ComprovanteDTO(double valorDaCompra,String cpf, Double idAcess, LocalDate dt) {
         this.data = dt;
         this.valorDaCompra = valorDaCompra;
         this.cpf = cpf;

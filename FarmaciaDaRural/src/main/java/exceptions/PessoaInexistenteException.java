@@ -1,16 +1,15 @@
 package exceptions;
 
-import models.Pessoa;
-
 public class PessoaInexistenteException extends Exception{
-    private Pessoa pessoa;
+    private String pessoa;
 
-    public PessoaInexistenteException(Pessoa pessoa){
-        super("Pessoa não existe");
+    public PessoaInexistenteException(String pessoa){
+        super("Pessoa Não Existe No sistema");
 
-        if (pessoa == null){
+        if(pessoa == null){
             throw new IllegalArgumentException();
         }
         this.pessoa = pessoa;
     }
+
 }

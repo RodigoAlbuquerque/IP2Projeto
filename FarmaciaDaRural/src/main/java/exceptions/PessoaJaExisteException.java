@@ -1,11 +1,9 @@
 package exceptions;
 
-import models.Pessoa;
-
 public class PessoaJaExisteException extends Exception{
-    private Pessoa pessoa;
+    private String pessoa;
 
-    public PessoaJaExisteException(Pessoa pessoa){
+    public PessoaJaExisteException(String pessoa){
         super("Pessoa já existe no sistema");
 
         if(pessoa == null){
