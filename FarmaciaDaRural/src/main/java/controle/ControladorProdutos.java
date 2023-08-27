@@ -43,9 +43,6 @@ public class ControladorProdutos {
         }
     }
 
-    public boolean verificarProdutoExistente(String nome){
-        return repositorioProdutos.verificarProdutoExistente(nome);
-    }
     public List<Produto> listarProdutos(){
         return repositorioProdutos.listarProdutos();
     }
@@ -53,10 +50,13 @@ public class ControladorProdutos {
     public List<Produto> listarProdutosEmBaixoEstoque(){
         return repositorioProdutos.listarProdutosEmBaixoEstoque();
     }
+
     public Produto buscarProduto(String nome) {
         return repositorioProdutos.buscarProduto(nome);
     }
     
-
+    public boolean verificarProdutoExistente(String nome){
+        return repositorioProdutos.verificarProdutoExistente(nome);
+    }
 
 }

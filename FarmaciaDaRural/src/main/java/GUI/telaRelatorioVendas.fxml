@@ -16,10 +16,10 @@
          <children>
             <TableView fx:id="tableView" prefHeight="420.0" prefWidth="432.0">
                <columns>
-                  <TableColumn fx:id="colCpf" prefWidth="137.60003662109375" text="CPF CLIENTE" />
-                  <TableColumn fx:id="colIdAcesso" prefWidth="109.5999755859375" text="ID Acesso " />
-                  <TableColumn fx:id="colData" prefWidth="112.0" text="DATA" />
-                  <TableColumn fx:id="colValor" prefWidth="72.79998779296875" text="VALOR R$" />
+                  <TableColumn fx:id="colCpf" prefWidth="130.4000244140625" text="CPF CLIENTE" />
+                  <TableColumn fx:id="colIdAcesso" text="ID Acesso " />
+                  <TableColumn fx:id="colData" prefWidth="81.5999755859375" text="DATA" />
+                  <TableColumn fx:id="colValor" prefWidth="139.2000732421875" text="VALOR R$" />
                </columns>
             </TableView>
          </children>

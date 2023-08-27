@@ -8,18 +8,19 @@ public class ComprovanteDTO {
     private String cpf;
     private Double idAcessFuncionario;
     private LocalDate data;
+  
 
-    public ComprovanteDTO(double valorDaCompra,String cpf, Double idAcess, LocalDate dt) {
-        this.data = dt;
+    public ComprovanteDTO(double valorDaCompra,String cpf, Double idAcess, LocalDate dt){
         this.valorDaCompra = valorDaCompra;
         this.cpf = cpf;
         this.idAcessFuncionario = idAcess;
+        this.data=dt;
+      
     }
 
     public LocalDate getData() {
         return data;
     }
-
 
     public void setData(LocalDate data) {
         this.data = data;

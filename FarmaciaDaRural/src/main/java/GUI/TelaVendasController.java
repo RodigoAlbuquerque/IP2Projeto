@@ -78,7 +78,7 @@ public class TelaVendasController {
             ItemVenda compra = new ItemVenda(Integer.parseInt(txtQnt.getText()), ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNomeProd.getText()));
             carrinho.add(compra);
             valorTotal.setText(String.valueOf(calcularValorTotalCompra()));
-            valorPremium.setText(String.valueOf(calcularValorTotalCompra() * 0.9));
+            valorPremium.setText(String.valueOf(calcularValorTotalCompra()*0.9));
             adicionarProdutoALista();
             limparCampos();
             showMessage("Produto adicionado com sucesso!", "Tudo certo!");    

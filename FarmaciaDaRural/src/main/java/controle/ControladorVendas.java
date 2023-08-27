@@ -6,10 +6,8 @@ import models.VendaTarja;
 
 import java.time.LocalDate;
 import java.util.List;
-import dados.IRepositorioPessoas;
 import dados.IRepositorioProdutos;
 import dados.IRepositorioVendas;
-import dados.RepositorioPessoas;
 import dados.RepositorioProdutos;
 import dados.RepositorioVendas;
 import exceptions.CompraControladaException;
@@ -22,13 +20,11 @@ import models.ItemVenda;
 public class ControladorVendas {
     private IRepositorioProdutos repositorioProdutos;
     private IRepositorioVendas repositorioVendas;
-    private IRepositorioPessoas repositorioPessoas;
     private static ControladorVendas instance;
 
     private ControladorVendas() {
         repositorioProdutos = RepositorioProdutos.getInstanceRepositorioProdutos();
         repositorioVendas = RepositorioVendas.getInstanceRepositorioVendas();
-        repositorioPessoas = RepositorioPessoas.getInstanceRepositorioPessoas();
     }
 
     public static ControladorVendas getInstanceControladorVendas() {
@@ -122,13 +118,11 @@ public class ControladorVendas {
                 repositorioProdutos.cadastrarProduto(produto);
                 System.out.println(quantidade + " unidades de " + produto.getNome() + " adicionadas ao estoque.");
             }
-        } else {
-            System.out.println("Produto inv�lido ou quantidade inv�lida para adicionar ao estoque.");
-        }
+        } 
     }
 
     public void removerProdutoDoEstoque(Produto produto, int quantidade) {
-        if (produto != null && quantidade > 0) {
+        if(produto != null && quantidade > 0) {
             Produto produtoExistente = repositorioProdutos.buscarProduto(produto.getNome());
             if (produtoExistente != null) {
                 int estoqueAtual = produtoExistente.getQuantidade();

@@ -3,6 +3,7 @@ package GUI;
 import java.util.List;
 
 import controle.ControladorProdutos;
+import exceptions.ProdutoEmEstoqueException;
 import exceptions.ProdutoInexistenteException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,17 +67,26 @@ public class TelaEstoqueController {
     }
 
     @FXML
-    public void descadastrarProduto(){
+    public void descadastrarProduto() throws ProdutoEmEstoqueException{
         try{
-            ControladorProdutos.getInstanceControladorProdutos().descadastrarProduto(txtNome.getText());
-            limparCampos();
-            showMessage("PRODUTO REMOVIDO COM SUCESSO", "Tudo Okay");
+            if(ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNome.getText()).getQuantidade() == 0){
+                ControladorProdutos.getInstanceControladorProdutos().descadastrarProduto(txtNome.getText());
+                limparCampos();
+                showMessage("PRODUTO REMOVIDO COM SUCESSO", "Tudo Okay");
+            }else{
+                throw new ProdutoEmEstoqueException("Ainda existem unidades deste produto em estoque");
+            }
         }
         catch(ProdutoInexistenteException e){
             limparCampos();
             showError(e);
         }
-    }    
+        catch(ProdutoEmEstoqueException e){
+            limparCampos();
+            showError(e);
+        }
+    }
+
     @FXML 
     public void incrementar(){
         if(ControladorProdutos.getInstanceControladorProdutos().verificarProdutoExistente(txtIncrementar.getText())){
@@ -86,6 +96,7 @@ public class TelaEstoqueController {
             showMessage("PRODUTO INEXISTENTE","ERRO PRODUTO NÃO ENCONTRADO");
         }
     }
+    
     private void showError(Exception exception){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Algo de errado");

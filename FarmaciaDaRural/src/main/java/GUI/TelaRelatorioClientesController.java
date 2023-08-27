@@ -3,7 +3,6 @@ package GUI;
 import java.util.List;
 import controle.ControladorPessoas;
 import exceptions.PessoaInexistenteException;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
