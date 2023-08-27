@@ -8,6 +8,9 @@ import controle.ControladorPessoas;
 import controle.ControladorProdutos;
 import controle.ControladorVendas;
 import exceptions.CamposInvalidosException;
+import exceptions.CompraControladaException;
+import exceptions.CompraNaoControladaException;
+import exceptions.ProdutoForaDeEstoqueException;
 import exceptions.ProdutoInexistenteException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +44,7 @@ public class TelaVendasController {
   @FXML private TableColumn<CarrinhoDTO, Double> colPreco;
   @FXML private ImageView imageView;
   @FXML private Label valorTotal;
+  @FXML private Label valorPremium;
 
   private List<ItemVenda> carrinho = new ArrayList<>();
   private String imageURL;
@@ -48,6 +52,7 @@ public class TelaVendasController {
 
   private void limparListaCarrinho(){
     carrinhoList = FXCollections.observableArrayList();
+    table.setItems(carrinhoList);
   }
 
   public void initialize() {
@@ -72,6 +77,7 @@ public class TelaVendasController {
           ItemVenda compra = new ItemVenda(Integer.parseInt(txtQnt.getText()), ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNomeProd.getText()));
           carrinho.add(compra);
           valorTotal.setText(String.valueOf(calcularValorTotalCompra()));
+          valorPremium.setText(String.valueOf(calcularValorTotalCompra() * 0.9));
           adicionarProdutoALista();
           limparCampos();
           showMessage("Produto adicionado com sucesso!", "Tudo certo!");
@@ -93,18 +99,29 @@ public class TelaVendasController {
   @FXML
   private void realizarVendaComum(){
       if(validarCampos()){
+        if(ControladorPessoas.getInstanceControladorCadastro().verificarIdAcesso(Double.parseDouble(txtIdAcesso.getText()))
+          && ControladorPessoas.getInstanceControladorCadastro().verificarCpf(txtCpf.getText())
+        ) {
           try{
-            Funcionario funcionario = ControladorPessoas.getInstanceControladorCadastro().buscarFuncPorId(Double.parseDouble(txtIdAcesso.getText()));
-            Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
-            ControladorVendas.getInstanceControladorVendas().realizarVendaComun(carrinho,funcionario,cliente);
-            limparCampos();
-            esvaziarCarrinho();
-            limparListaCarrinho();
-            showMessage("Produto Comprado com sucesso", "Tudo certo");
-          }
-          catch(CamposInvalidosException e){
-            showError(e);
-          }
+              Funcionario funcionario = ControladorPessoas.getInstanceControladorCadastro().buscarFuncPorId(Double.parseDouble(txtIdAcesso.getText()));
+              Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
+              ControladorVendas.getInstanceControladorVendas().realizarVendaComun(carrinho,funcionario,cliente);
+              limparCampos();
+              esvaziarCarrinho();
+              limparListaCarrinho();
+              showMessage("Produto Comprado com sucesso", "Tudo certo");
+            }
+            catch(ProdutoForaDeEstoqueException e){
+              esvaziarCarrinho();
+              limparListaCarrinho();
+              showError(e);
+            }
+            catch(CompraControladaException e){
+              showError(e);
+            }
+        }else{
+          showMessage("FUNCIONARIO OU CLIENTE INEXISTENTE", "PESSOA NÃO ENCONTRADA");
+        }
       }else{
         showMessage("Campos invalidos tente novaemente", "ALGO ESTÁ ERRADO");
       }
@@ -114,18 +131,30 @@ public class TelaVendasController {
   @FXML
   private void realizarVendaControlada() {
     if(validarCampos() && imageURL != null){
+      if(ControladorPessoas.getInstanceControladorCadastro().verificarIdAcesso(Double.parseDouble(txtIdAcesso.getText()))
+          && ControladorPessoas.getInstanceControladorCadastro().verificarCpf(txtCpf.getText())){
         try{
-            Funcionario funcionario = ControladorPessoas.getInstanceControladorCadastro().buscarFuncPorId(Double.parseDouble(txtIdAcesso.getText()));
-            Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
-            ControladorVendas.getInstanceControladorVendas().realizarVendaControlada(carrinho,funcionario,cliente,imageURL);
-            esvaziarCarrinho();
-            limparListaCarrinho();
-            showMessage("Produto Comprado com sucesso", "Tudo certo");
-            imageView.setImage(null);
-          }
-          catch(CamposInvalidosException e){
-            showError(e);
-          }
+              Funcionario funcionario = ControladorPessoas.getInstanceControladorCadastro().buscarFuncPorId(Double.parseDouble(txtIdAcesso.getText()));
+              Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
+              ControladorVendas.getInstanceControladorVendas().realizarVendaControlada(carrinho,funcionario,cliente,imageURL);
+              esvaziarCarrinho();
+              limparListaCarrinho();
+              showMessage("Produto Comprado com sucesso", "Tudo certo");
+              imageView.setImage(null);
+            }
+            catch(ProdutoForaDeEstoqueException e){
+              esvaziarCarrinho();
+              limparListaCarrinho();
+              showError(e);
+            }
+            catch(CompraNaoControladaException e){
+              esvaziarCarrinho();
+              limparListaCarrinho();
+              showError(e);
+            }
+        }else{
+          showMessage("FUNCIONARIO OU CLIENTE INEXISTENTE", "PESSOA NÃO ENCONTRADA");
+        }
       }else{
         showMessage("Campos invalidos tente novaemente", "ALGO ESTÁ ERRADO");
       }
@@ -157,18 +186,21 @@ public class TelaVendasController {
   }
 
   private boolean validarCampos(){
-    if(txtIdAcesso.getText() != null && txtCpf.getText() != null &&
-      carrinho != null)
+    if( txtIdAcesso.getText().equals(null) || txtIdAcesso.getText().equals("") ||
+        txtCpf.getText().equals(null) || txtCpf.getText().equals("") ||
+        carrinho == null)
     {
-      return true;
-    }
-    else{
       return false;
     }
-    
+    else{
+      return true;
+    }
   }
-  private void esvaziarCarrinho(){
+
+  @FXML
+  public void esvaziarCarrinho(){
     carrinho = new ArrayList<>();
+    limparListaCarrinho();
   }
 
   @FXML
@@ -189,5 +221,10 @@ public class TelaVendasController {
       valorTotal += itens.getQuantidade() * itens.getProduto().getPreco();
     }
     return valorTotal;
+  }
+
+  @FXML
+  public void anularReceita(){
+    imageView.setImage(null);
   }
 }

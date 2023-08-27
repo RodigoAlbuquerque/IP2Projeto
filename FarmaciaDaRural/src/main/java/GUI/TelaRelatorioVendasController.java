@@ -60,8 +60,14 @@ public class TelaRelatorioVendasController {
                 Double id = venda.getFuncionario().getIdAcessoSistema();
                 LocalDate dt = venda.getData();
                 double valorCompra=0;
-                for(ItemVenda compra: venda.getItemVenda()){
-                    valorCompra += compra.getProduto().getPreco() * compra.getQuantidade();
+                if(venda.getCliente().isPremium()){
+                    for(ItemVenda compra: venda.getItemVenda()){
+                        valorCompra += compra.getProduto().getPreco() *0.9 * compra.getQuantidade();
+                    }
+                }else{
+                     for(ItemVenda compra: venda.getItemVenda()){
+                        valorCompra += compra.getProduto().getPreco() * compra.getQuantidade();
+                    }
                 }
                 ComprovanteDTO compra = new ComprovanteDTO(valorCompra, cpf, id, dt);
                 listaDeVendas.add(compra);

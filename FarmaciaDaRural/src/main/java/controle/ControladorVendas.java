@@ -12,7 +12,9 @@ import dados.IRepositorioVendas;
 import dados.RepositorioPessoas;
 import dados.RepositorioProdutos;
 import dados.RepositorioVendas;
-import exceptions.CamposInvalidosException;
+import exceptions.CompraControladaException;
+import exceptions.CompraNaoControladaException;
+import exceptions.ProdutoForaDeEstoqueException;
 import models.Cliente;
 import models.Funcionario;
 import models.ItemVenda;
@@ -36,47 +38,42 @@ public class ControladorVendas {
         return instance;
     }
 
-    public void realizarVendaComun(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente) throws CamposInvalidosException {
-        if (compra != null &&
-            verificarEstoqueDisponivel(compra) &&
-            repositorioPessoas.verificarCpf(vendedor.getCpf()) &&
-            repositorioPessoas.verificarCpf(cliente.getCpf())) 
-        {
-            for (ItemVenda itemComprado : compra) {
-                Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
-                produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
-                repositorioProdutos.atualizarProduto(produtoNoEstoque);
+    public void realizarVendaComun(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente) throws CompraControladaException, ProdutoForaDeEstoqueException{
+        if(!verificarCompraControlada(compra)){
+            if(compra !=null && verificarEstoqueDisponivel(compra)){
+                for (ItemVenda itemComprado : compra) {
+                    Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
+                    produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
+                    repositorioProdutos.atualizarProduto(produtoNoEstoque);
+                }
+                Venda venda = new Venda((Funcionario) vendedor, (Cliente) cliente, compra, LocalDate.now());
+                repositorioVendas.adicionarVenda(venda);
+            }else{
+                throw new ProdutoForaDeEstoqueException(compra);
             }
-            Venda venda = new Venda((Funcionario) vendedor, (Cliente) cliente, compra, LocalDate.now());
-            repositorioVendas.adicionarVenda(venda);
-            
-            // Atualizar o número de compras do cliente
-            cliente.incrementarNumeroCompras();
-        } else {
-            throw new CamposInvalidosException("Preencha os campos corretamente!");
+        }else{
+            throw new CompraControladaException("COMPRA CONTROLADA NECESSITA RECEITA");
         }
     }
+
     
-    public void realizarVendaControlada(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente, String receita) throws CamposInvalidosException { 
-        if (compra != null &&
-            verificarEstoqueDisponivel(compra) && 
-            repositorioPessoas.verificarCpf(vendedor.getCpf()) &&
-            repositorioPessoas.verificarCpf(cliente.getCpf()) &&
-            verificarCompraControlada(compra) &&
-            receita != null)
-        {
-            for (ItemVenda itemComprado : compra) {
-                Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
-                produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
-                repositorioProdutos.atualizarProduto(produtoNoEstoque);
-            }
-            Venda venda = new VendaTarja(vendedor, cliente, compra, LocalDate.now(), receita);
-            repositorioVendas.adicionarVenda(venda);
-            
-            // Atualizar o número de compras do cliente
-            cliente.incrementarNumeroCompras();
-        } else {
-            throw new CamposInvalidosException("Preencha os campos corretamente!");
+    public void realizarVendaControlada(List<ItemVenda> compra, Funcionario vendedor, Cliente cliente, String receita) throws CompraNaoControladaException, ProdutoForaDeEstoqueException { 
+        if(verificarCompraControlada(compra)){ 
+            if(compra != null &&
+                verificarEstoqueDisponivel(compra))
+            {
+                for (ItemVenda itemComprado : compra) {
+                    Produto produtoNoEstoque = repositorioProdutos.buscarProduto(itemComprado.getProduto().getNome());
+                    produtoNoEstoque.setQuantidade(produtoNoEstoque.getQuantidade() - itemComprado.getQuantidade());
+                    repositorioProdutos.atualizarProduto(produtoNoEstoque);
+                }
+                Venda venda = new VendaTarja(vendedor, cliente, compra, LocalDate.now(), receita);
+                repositorioVendas.adicionarVenda(venda);
+            }else{
+                throw new ProdutoForaDeEstoqueException(compra);
+            } 
+        }else{
+            throw new CompraNaoControladaException("A compra que está tentando realizar não é controlada");
         }
     }
         

@@ -131,7 +131,12 @@ public class ControladorPessoas {
         }
         return nVendas;
     }
-    
+    public Boolean verificarIdAcesso(Double id){
+       return repositorioPessoas.verificarIdAcesso(id);
+    }
+    public Boolean verificarCpf(String cpf){
+        return repositorioPessoas.verificarCpf(cpf);
+    }
 }
     
 

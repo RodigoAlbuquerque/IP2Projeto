@@ -27,8 +27,6 @@ public class TelaRelatorioClientesController {
     @FXML
     private TableColumn<Cliente, Boolean> colPremium;
     @FXML
-    private TableColumn<Cliente, Integer> colNumCompras;
-    @FXML
     private TextField txtCpfCliente;
 
     private ObservableList<Cliente> clientesList = FXCollections.observableArrayList();
@@ -42,7 +40,7 @@ public class TelaRelatorioClientesController {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         colPremium.setCellValueFactory(new PropertyValueFactory<>("premium"));
-        colNumCompras.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getNumeroCompras()));
+
 
          // Configurar a TableView para usar a lista de clientes
          tableView.setItems(clientesList);

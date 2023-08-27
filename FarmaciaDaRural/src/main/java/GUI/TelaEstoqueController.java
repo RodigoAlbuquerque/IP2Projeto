@@ -30,6 +30,8 @@ public class TelaEstoqueController {
     private TableColumn<Produto, Boolean> colTarja;
     @FXML
     private TextField txtNome;
+    @FXML
+    private TextField txtIncrementar;
 
     private ObservableList<Produto> produtoList = FXCollections.observableArrayList();
 
@@ -75,7 +77,15 @@ public class TelaEstoqueController {
             showError(e);
         }
     }    
-    
+    @FXML 
+    public void incrementar(){
+        if(ControladorProdutos.getInstanceControladorProdutos().verificarProdutoExistente(txtIncrementar.getText())){
+            Produto produto = ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtIncrementar.getText());
+            produto.setQuantidade(produto.getQuantidade()+1);
+        }else{
+            showMessage("PRODUTO INEXISTENTE","ERRO PRODUTO NÃO ENCONTRADO");
+        }
+    }
     private void showError(Exception exception){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Algo de errado");

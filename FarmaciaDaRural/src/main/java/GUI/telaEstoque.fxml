@@ -59,5 +59,19 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
+      <Label layoutX="21.0" layoutY="228.0" prefHeight="47.0" prefWidth="124.0" text="NOME DO PRODUTO A SER INCREMENTADO" textAlignment="CENTER" textFill="#806d6b" wrapText="true">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="21.0" layoutY="315.0" mnemonicParsing="false" onAction="#incrementar" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="INCREMENTAR" textFill="#eeccc9">
+         <font>
+            <Font name="Times New Roman Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
+      <TextField fx:id="txtIncrementar" layoutX="21.0" layoutY="282.0" prefHeight="25.0" prefWidth="124.0" />
    </children>
 </Pane>

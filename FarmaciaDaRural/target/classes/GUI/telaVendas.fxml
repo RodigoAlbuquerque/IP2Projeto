@@ -69,7 +69,7 @@
             </TableView>
          </children>
       </VBox>
-      <Button layoutX="518.0" layoutY="361.0" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #804742;" text="Voltar &lt;-" textFill="#eeccc9">
+      <Button layoutX="518.0" layoutY="366.0" mnemonicParsing="false" onAction="#voltar" style="-fx-background-color: #804742;" text="Voltar &lt;-" textFill="#eeccc9">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -77,12 +77,34 @@
             <DropShadow height="7.0" radius="3.0" width="7.0" />
          </effect>
       </Button>
-      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="286.0" layoutY="336.0" text="VALOR TOTAL: ">
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="286.0" layoutY="346.0" text="VALOR TOTAL: ">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="valorTotal" layoutX="380.0" layoutY="336.0" text="0" />
+      <Label fx:id="valorTotal" layoutX="380.0" layoutY="346.0" text="0" />
+      <Label layoutX="286.0" layoutY="365.0" text="VALOR PREMIUM: ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="valorPremium" layoutX="396.0" layoutY="365.0" prefHeight="8.0" prefWidth="0.0" text="0" />
+      <Button layoutX="426.0" layoutY="333.0" mnemonicParsing="false" onAction="#esvaziarCarrinho" prefHeight="25.0" prefWidth="159.0" style="-fx-background-color: #804742;" text="ESVAZIAR CARRINHO" textFill="#eeccc9">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
+      <Button layoutX="213.0" layoutY="342.0" mnemonicParsing="false" onAction="#anularReceita" prefHeight="48.0" prefWidth="67.0" style="-fx-background-color: #804742;" text="ANULAR RECEITA" textFill="#eeccc9" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow height="7.0" radius="3.0" width="7.0" />
+         </effect>
+      </Button>
    </children>
 </Pane>

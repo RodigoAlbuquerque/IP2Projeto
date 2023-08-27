@@ -96,7 +96,7 @@ public class TelaRelatorioFuncionariosController {
             try{
                 ControladorPessoas.getInstanceControladorCadastro().removerPessoa(txtCpfFuncionario.getText());
                 limparCampos();
-                showMessage("CLIENTE REMOVIDO COM SUCESSO", "Tudo Okay");
+                showMessage("FUNCIONÁRIO REMOVIDO COM SUCESSO", "Tudo Okay");
             }
             catch(PessoaInexistenteException e){
                 limparCampos();
