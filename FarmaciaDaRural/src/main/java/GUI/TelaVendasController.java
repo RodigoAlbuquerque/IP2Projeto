@@ -72,15 +72,20 @@ public class TelaVendasController {
   @FXML
   private void adicionarProdutoAoCart() throws CamposInvalidosException,ProdutoInexistenteException{
     try{
-      if(txtNomeProd.getText() != null && txtQnt.getText() != null){
+      if(!txtNomeProd.getText().equals(null) && !txtQnt.getText().equals(null)){
         if(ControladorProdutos.getInstanceControladorProdutos().verificarProdutoExistente(txtNomeProd.getText())){
-          ItemVenda compra = new ItemVenda(Integer.parseInt(txtQnt.getText()), ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNomeProd.getText()));
-          carrinho.add(compra);
-          valorTotal.setText(String.valueOf(calcularValorTotalCompra()));
-          valorPremium.setText(String.valueOf(calcularValorTotalCompra() * 0.9));
-          adicionarProdutoALista();
-          limparCampos();
-          showMessage("Produto adicionado com sucesso!", "Tudo certo!");
+          if(ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNomeProd.getText()).getQuantidade() >= Integer.parseInt(txtQnt.getText())){
+            ItemVenda compra = new ItemVenda(Integer.parseInt(txtQnt.getText()), ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNomeProd.getText()));
+            carrinho.add(compra);
+            valorTotal.setText(String.valueOf(calcularValorTotalCompra()));
+            valorPremium.setText(String.valueOf(calcularValorTotalCompra() * 0.9));
+            adicionarProdutoALista();
+            limparCampos();
+            showMessage("Produto adicionado com sucesso!", "Tudo certo!");    
+          }
+          else{
+            throw new CamposInvalidosException("PRODUTO EM FALTA");
+          }
         }else{
           throw new ProdutoInexistenteException(txtNomeProd.getText());
         }
