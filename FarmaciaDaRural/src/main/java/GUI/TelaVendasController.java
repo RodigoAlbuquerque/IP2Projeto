@@ -78,9 +78,9 @@ public class TelaVendasController {
             ItemVenda compra = new ItemVenda(Integer.parseInt(txtQnt.getText()), ControladorProdutos.getInstanceControladorProdutos().buscarProduto(txtNomeProd.getText()));
             carrinho.add(compra);
             valorTotal.setText(String.valueOf(calcularValorTotalCompra()));
-            valorPremium.setText(String.valueOf(calcularValorTotalCompra()*0.9));
+            valorPremium.setText(String.valueOf(calcularValorTotalCompra()*0.5));
             adicionarProdutoALista();
-            limparCampos();
+            limparCamposCarrinho();
             showMessage("Produto adicionado com sucesso!", "Tudo certo!");    
           }
           else{
@@ -111,17 +111,22 @@ public class TelaVendasController {
               Funcionario funcionario = ControladorPessoas.getInstanceControladorCadastro().buscarFuncPorId(Double.parseDouble(txtIdAcesso.getText()));
               Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
               ControladorVendas.getInstanceControladorVendas().realizarVendaComun(carrinho,funcionario,cliente);
-              limparCampos();
+              limparCamposPessoas();
               esvaziarCarrinho();
               limparListaCarrinho();
+              limparCamposValores();
               showMessage("Produto Comprado com sucesso", "Tudo certo");
             }
             catch(ProdutoForaDeEstoqueException e){
               esvaziarCarrinho();
               limparListaCarrinho();
+              limparCamposValores();
               showError(e);
             }
             catch(CompraControladaException e){
+              esvaziarCarrinho();
+              limparListaCarrinho();
+              limparCamposValores();
               showError(e);
             }
         }else{
@@ -143,18 +148,21 @@ public class TelaVendasController {
               Cliente cliente = ControladorPessoas.getInstanceControladorCadastro().buscarPessoaPorCpf(txtCpf.getText()); 
               ControladorVendas.getInstanceControladorVendas().realizarVendaControlada(carrinho,funcionario,cliente,imageURL);
               esvaziarCarrinho();
-              limparListaCarrinho();
+              limparCamposPessoas();
+              limparCamposValores();
               showMessage("Produto Comprado com sucesso", "Tudo certo");
               imageView.setImage(null);
             }
             catch(ProdutoForaDeEstoqueException e){
               esvaziarCarrinho();
               limparListaCarrinho();
+              limparCamposValores();
               showError(e);
             }
             catch(CompraNaoControladaException e){
               esvaziarCarrinho();
               limparListaCarrinho();
+              limparCamposValores();
               showError(e);
             }
         }else{
@@ -169,11 +177,19 @@ public class TelaVendasController {
     ScreenManager.getInstance().changeScreen(0);
   }
 
-  private void limparCampos(){
+  private void limparCamposPessoas(){
     txtCpf.setText("");
-    txtNomeProd.setText("");
     txtIdAcesso.setText("");
+  }
+
+  private void limparCamposCarrinho(){
+    txtNomeProd.setText("");
     txtQnt.setText("");
+  }
+
+  private void limparCamposValores(){
+    valorPremium.setText("");
+    valorTotal.setText("");
   }
 
   private void showError(Exception exception){
@@ -206,6 +222,7 @@ public class TelaVendasController {
   public void esvaziarCarrinho(){
     carrinho = new ArrayList<>();
     limparListaCarrinho();
+    limparCamposValores();
   }
 
   @FXML
