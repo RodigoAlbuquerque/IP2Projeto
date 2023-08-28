@@ -58,7 +58,7 @@
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#listarFuncionarios" prefHeight="64.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="ORDENAR FUNCIONARIOS POR VENDAS" textAlignment="CENTER" textFill="#eeccc9" wrapText="true">
+      <Button layoutX="14.0" layoutY="87.0" mnemonicParsing="false" onAction="#listarFuncionariosQueMaisVendem" prefHeight="64.0" prefWidth="124.0" style="-fx-background-color: #804742;" text="ORDENAR FUNCIONARIOS POR VENDAS" textAlignment="CENTER" textFill="#eeccc9" wrapText="true">
          <font>
             <Font name="Times New Roman Bold" size="12.0" />
          </font>

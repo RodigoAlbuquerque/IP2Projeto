@@ -1,7 +1,5 @@
 package GUI;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import controle.ControladorPessoas;
 import controle.ControladorVendas;
 import exceptions.PessoaInexistenteException;
@@ -17,8 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Funcionario;
 import models.Pessoa;
-import java.util.Map; 
-import java.util.HashMap;
+
 
 
 public class TelaRelatorioFuncionariosController {
@@ -72,24 +69,14 @@ public class TelaRelatorioFuncionariosController {
     @FXML
     public void listarFuncionariosQueMaisVendem() {
         ObservableList<Funcionario> listaDeFuncionarios = FXCollections.observableArrayList();
-        List<Pessoa> listaDePessoas = ControladorPessoas.getInstanceControladorCadastro().listarPessoasPorTipo(Funcionario.class);
-        
-        Map<Funcionario, Integer> vendasPorFuncionario = new HashMap<>();
-        for (Pessoa pessoa : listaDePessoas) {
-            if (pessoa instanceof Funcionario) {
-                Funcionario funcionario = (Funcionario) pessoa;
-                int numeroDeVendas = ControladorPessoas.getInstanceControladorCadastro().calcularVendas(funcionario, ControladorVendas.getInstanceControladorVendas().listarVendas());
-                vendasPorFuncionario.put(funcionario, numeroDeVendas);
-            }
+        List<Funcionario> listaDePessoas = ControladorPessoas.getInstanceControladorCadastro().listarFuncionariosQueMaisVendem();
+        for(Funcionario func: listaDeFuncionarios){
+            listaDeFuncionarios.add(func);
         }
-        List<Funcionario> funcionariosOrdenados = vendasPorFuncionario.entrySet().stream()
-                .sorted((entry1, entry2) -> Integer.compare(entry2.getValue(), entry1.getValue()))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-
-        listaDeFuncionarios.addAll(funcionariosOrdenados);
+        listaDeFuncionarios.addAll(listaDePessoas);
         atualizarFuncionarioList(listaDeFuncionarios);
     }
+
     @FXML
     public void descadastrar(){
         if(validarCampos()){

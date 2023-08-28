@@ -65,6 +65,16 @@ public class TelaEstoqueController {
             }
         atualizarProdutosList(listaDeProdutos);
     }
+    
+    @FXML
+    public void listarProdutosEmBaixoEstoque(){
+        ObservableList<Produto> listaDeProdutos = FXCollections.observableArrayList();
+        List<Produto> listaDeProd = ControladorProdutos.getInstanceControladorProdutos().listarProdutosEmBaixoEstoque();
+        for (Produto produto : listaDeProd) {
+                listaDeProdutos.add(produto);
+            }
+        atualizarProdutosList(listaDeProdutos);
+    }
 
     @FXML
     public void descadastrarProduto() throws ProdutoEmEstoqueException{

@@ -81,7 +81,7 @@ public class RepositorioProdutos implements IRepositorioProdutos {
     public List<Produto> listarProdutosEmBaixoEstoque(){
         ArrayList<Produto> produtosEmBaixoEstoque = new ArrayList<>();
         for(Produto pr: produtos){
-            if(pr.getQuantidade() < 2){
+            if(pr.getQuantidade() < 6){
                 produtosEmBaixoEstoque.add(pr);
             }
         }
